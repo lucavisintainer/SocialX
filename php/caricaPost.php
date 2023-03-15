@@ -11,6 +11,7 @@ if (!isset($_SESSION['loggato']) || $_SESSION['loggato'] != true) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Carica post</title>
@@ -18,7 +19,13 @@ if (!isset($_SESSION['loggato']) || $_SESSION['loggato'] != true) {
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 	<!-- Font Awesome icons -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css">
+	<style>
+		body {
+			background-color: #a5beda;
+		}
+	</style>
 </head>
+
 <body>
 <?php include 'header.php'; ?>
 <br><br>

@@ -28,6 +28,11 @@ if (!isset($_SESSION['loggato']) || $_SESSION['loggato'] != true) {
             height: 400px;
             overflow-y: scroll;
         }
+       
+		body {
+			background-color: #a5beda;
+		}
+	
     </style>
 </head>
 
