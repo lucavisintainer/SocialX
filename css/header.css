@@ -1,0 +1,17 @@
+.my-white-btn {
+    color: #fff; /* colore del testo bianco */
+    border-color: #fff; /* colore del contorno bianco */
+  }
+  
+  .my-white-btn:hover {
+    color: #fff; /* colore del testo bianco quando si passa sopra il pulsante */
+    background-color: #000; /* colore dello sfondo nero quando si passa sopra il pulsante */
+    border-color: #fff; /* colore del contorno bianco quando si passa sopra il pulsante */
+  }
+
+  .my-white-btn:active:focus {
+    color: #ffffff; 
+    background-color: #161617; 
+    border-color: #494F57;
+    }
+  
