@@ -1,11 +1,12 @@
 <?php
+session_start();
 include 'connessione.php';
 $idCommento = $_GET['idCommento'];
 $idPost = $_GET['idPost'];
 $query = "UPDATE commento SET stato='ELIMINATO' WHERE idCommento=$idCommento";
 mysqli_query($db_conn, $query);
 if(verificaProprietario($idPost)){
-    header("Location: visualizzaPostUtente.php?id_post=" . $idPost);   
+    header("Location: visualizzaPost.php?id_post=" . $idPost);   
 }else{
     header("Location: visualizzaPostUtente.php?id_post=" . $idPost);   
 }

@@ -54,6 +54,11 @@ CREATE TABLE commento (
     PRIMARY KEY(idCommento)
 ) ENGINE = InnoDB;                                                        
 
+/**
+Nella tabella commento sono presenti i commenti pubblicati(PUBBLICATO) e i commenti eliminati con il post ancora pubblico(ELIMINATO)
+Se il post viene eliminato, vengono eliminati anche tutti i commenti(sia quelli pubblicati che quelli eliminati in precedenza)
+*/
+
 CREATE TABLE miPiace (
     idLike                        INT                 NOT NULL    AUTO_INCREMENT,
     data                          DATETIME           NOT NULL,

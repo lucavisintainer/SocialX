@@ -6,7 +6,7 @@
         <span>.      .</span>
         <span>.      .</span>
       </div>
-  <a class="navbar-brand " href="#">Home</a>
+  <a class="navbar-brand " href="home.php">Home</a>
   
   <div class="collapse navbar-collapse " id="navbarNav">
     <ul class="navbar-nav">

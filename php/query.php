@@ -108,6 +108,38 @@ function trovaIDpost($idUsername)
 		}
 	}
 
+
+	function idProfiloAutorePost($id){ 
+		include 'connessione.php';
+		$query = "SELECT fkProfilo FROM post WHERE idPost='$id'";
+		if ($result = $db_conn->query($query)) {
+			if ($result->num_rows == 1) {
+				$row = $result->fetch_assoc();
+				return $row['fkProfilo'];
+			} else {
+				return "";
+			}
+		} else {
+			return "";
+		}
+	}
+
+
+	function idProfiloToUsername($id){ 
+		include 'connessione.php';
+		$query = "SELECT username FROM profilo WHERE idProfilo='$id'";
+		if ($result = $db_conn->query($query)) {
+			if ($result->num_rows == 1) {
+				$row = $result->fetch_assoc();
+				return $row['username'];
+			} else {
+				return "";
+			}
+		} else {
+			return "";
+		}
+	}
+
 	function nCommenti($id)
 {
     include 'connessione.php';
