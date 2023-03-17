@@ -58,6 +58,7 @@ function visibilitaAccount($visibilitaAccount)
 <head>
     <meta charset="UTF-8">
     <title>Impostazioni Profilo</title>
+    <link rel="icon" href="../img/icone/favicon.png" type="image/png"> 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>

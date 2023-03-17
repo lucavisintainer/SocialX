@@ -14,6 +14,7 @@ if (!isset($_SESSION['loggato']) || $_SESSION['loggato'] != true) {
 
 <head>
     <title>Home - SocialX</title>
+    <link rel="icon" href="../img/icone/favicon.png" type="image/png"> 
     <!-- Inclusione file Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

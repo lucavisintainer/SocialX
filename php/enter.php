@@ -4,6 +4,7 @@
 <html>
 
 <head>
+<link rel="icon" href="../img/icone/favicon.png" type="image/png"> 
     <meta charset="UTF-8">
     <title>Social Network</title>
     <link rel="stylesheet" type="text/css" href="../css/login.css">
