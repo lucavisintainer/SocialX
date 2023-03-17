@@ -28,9 +28,17 @@ if (!isset($_SESSION['loggato']) || $_SESSION['loggato'] != true) {
 <?php 
 	include 'query.php';
     include 'header.php';
-
-    global $idProfilo;
-	$idProfilo = idCercato($_SESSION['utenteCercato']);
+    
+    if(isset($_GET['id'])) {
+        id: $_GET['id'];
+        global $idProfilo;
+	    $idProfilo = $_GET['id'];
+        $_SESSION['utenteCercato']=idProfiloToUsername($_GET['id']);
+    }else{
+        global $idProfilo;
+        $idProfilo = idCercato($_SESSION['utenteCercato']);
+    }
+    
 
     function esiste()
 	{

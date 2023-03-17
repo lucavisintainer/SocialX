@@ -1,0 +1,26 @@
+.card {
+    width: 70%;
+}
+
+.card-img-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.carousel-control-prev {
+    left: -40px;
+    transform: translateY(-50%) translateX(-10px);
+    top: 40%;
+}
+
+.carousel-control-next {
+    left: 740px;
+    transform: translateY(-50%) translateX(-10px);
+    top: 40%;
+}
+
+.container {
+    margin-left: 355px;
+}

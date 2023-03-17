@@ -19,50 +19,43 @@ if (!isset($_SESSION['loggato']) || $_SESSION['loggato'] != true) {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <style>
-        .card {
-            width: 70%;
-        }
-
-        .card-img-top {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-        }
-
-        .carousel-control-prev {
-            left: -40px;
-            transform: translateY(-50%) translateX(-10px);
-            top: 40%;
-        }
-
-        .carousel-control-next {
-            left: 740px;
-            transform: translateY(-50%) translateX(-10px);
-            top: 40%;
-        }
-    </style>
+    <link rel="stylesheet" href="../css/home.css">
 </head>
 
-<body>
-    <?php 
+<body>  
+    <?php
+    include 'header.php';
     postCasuali();  //prendo tutti i post
     stampa10Post(); //ne stampo 10 casuali
+    ?> <div id="post-container"> </div> <?php
+
+    $mostraForm = true;
+    if ($mostraForm) {
+    if (count($_SESSION['array']) > 0) {                 //se l'array contiene altri post(oltre ai 10 già visualizzati)       
+            echo "<br><br><br><div class='container'><div class='row'><div class='col text-center'>
+            <form method='post id='mostraPostForm'>
+                <input type='hidden' name='mostra' value='my_fmostraPost'>
+                <button type='button' class='btn btn-primary' onclick='mostraPost()'>Carica altri post</button>
+            </form>
+        </div></div></div><br><br><br>";
+        }
+    }
+    include 'footer.php';
     ?>
 
-<script>
-function likePost(post_id) {
-    // Codice JavaScript per aggiornare l'immagine del pulsante "like"
-      var likeImage = document.getElementById("likeImage");
-    if (like(post_id)) {
-        likeImage.src = "../img/icone/like.png";
-    } else {
-        likeImage.src = "../img/icone/nolike.png";
-    }
 
-    // Codice JavaScript per inviare una richiesta AJAX al server per aggiornare il like nel database
-    // ...
+<script>
+function mostraPost() {
+  var xmlhttp = new XMLHttpRequest();
+  xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("post-container").innerHTML += this.responseText;
+    }
+  };
+  xmlhttp.open("POST", "mostra_post.php", true);
+  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xmlhttp.send("mostra=mostraPost");
+
 }
 </script>
 </body>
@@ -91,8 +84,9 @@ function like($idPost)
 //globale dopo i primi 20, ...
 function postCasuali()
 {
+    $idProfilo = $_SESSION['idProfilo'];
     include 'connessione.php';
-    $query = "SELECT idPost FROM post";
+    $query = "SELECT idPost FROM post WHERE fkProfilo != $idProfilo";
     $result = $db_conn->query($query);
     $id_array = array();                //array vuoto dove memorizzare gli ID dei post
     if ($result->num_rows > 0) {        //se c'è almeno un post
@@ -101,39 +95,34 @@ function postCasuali()
         }
     }
     shuffle($id_array);     //mescolo l'array di ID dei post in modo casuale
-    global $post_ids;
-    $post_ids = $id_array;  //id salvati in una variabile globale
+    $_SESSION['array'] = $id_array;
 }
 
 function stampa10Post()
 {
-    global $post_ids;
-    global $first_10_post_ids;
-    $first_10_post_ids = array_slice($post_ids, 0, 10); //prendo i primi 10
-    $post_ids = array_slice($post_ids, 10); //elimino i primi 10 dall'array global
+
+    $first_10_post_ids = array_slice($_SESSION['array'], 0, 10); //prendo i primi 10
+    $_SESSION['array'] = array_slice($_SESSION['array'], 10); //elimino i primi 10 dall'array
 
     foreach ($first_10_post_ids as $post_id) {
-        
-    
-    echo "<div class='container-fluid mt-5 text-center'><div class='row justify-content-center'><div class='col-md-2'></div> 
-    <div class='col-md-8'><div><div class='card'>    
 
-    <img class='card-img-top'" . convertToUrl($post_id) . "alt='Post'>
-    <div class='card-body'>
-        <h5 class='card-title'>" . idProfiloToUsername(idProfiloAutorePost($post_id)) . "</h5>
+        
+        echo "<div class='container-fluid mt-5 text-center'><div class='row justify-content-center'><div class='col-md-2'></div> 
+        <div class='col-md-8'><div><div class='card'>    
+        <img class='card-img-top'" . convertToUrl($post_id) . "alt='Post'>
+        <div class='card-body'>
+        <h5 class='card-title'><a href='paginaUtente.php?id=". idProfiloAutorePost($post_id) ."'>" . idProfiloToUsername(idProfiloAutorePost($post_id)) . "</a></h5>
         <p class='card-text'>" . descrizionePost($post_id) . "</p>
-        
-        <button onclick='likePost(post_id)' type='submit' name='likeButton' style='border: none; background-color: white;'>
-            <img src='../img/icone/like.png' id='likeImage' alt='like' style='width: 50px; height: auto;'>
-        </button>
-        
-    
-        <a href='#' class='btn btn-primary'>Commenta</a>
-        <a href='#' class='btn btn-primary'>Vai al post</a>
+            <a href='#' class='btn btn-primary'";
+            echo "<a href='#' class='btn btn-primary' onclick='document.getElementById(\"post_form\").submit()'>Vai al post</a>
+            <form id='post_form' method='post' action='visualizzaPostUtente.php'>
+                  <input type='hidden' name='id_post' value='" . $post_id . "'>
+            </form>
+            </div></div></div></div></div></div>";
+      
+    }
+}
 
-    </div></div></div></div></div></div>";
-}
-}
 
 function convertToUrl($id)
 {
@@ -147,5 +136,20 @@ function convertToUrl($id)
     }
 }
 
+function verificaProprietario($idPost)
+{
+    include 'connessione.php';
+    $idProfilo =  $_SESSION['idProfilo'];
+    $query = "SELECT fkProfilo FROM post WHERE idPost='$idPost'";
+    $result = $db_conn->query($query);
+    if ($result->num_rows == 1) {
+        $row = $result->fetch_assoc();
+        if ($row['fkProfilo'] == $idProfilo) {
+            return true;    //il post è dell'utente loggato
+        } else {
+            return false;   //il post è dell'utente cercato
+        }
+    }
+}
 
 ?>
