@@ -58,15 +58,21 @@ function visibilitaAccount($visibilitaAccount)
 <head>
     <meta charset="UTF-8">
     <title>Impostazioni Profilo</title>
-    <link rel="icon" href="../img/icone/favicon.png" type="image/png"> 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="icon" href="../img/icone/favicon.png" type="image/png">
+    <!-- Inclusione delle librerie Bootstrap e jQuery -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
 </head>
 <style>
-		body {
-			background-color: #a5beda;
-		}
-	</style>
+    body {
+        background-color: #a5beda;
+    }
+</style>
+
 <body>
     <?php include 'header.php'; ?>
     <div class="container mt-5">
@@ -83,50 +89,101 @@ function visibilitaAccount($visibilitaAccount)
                 <textarea id="biografia" name="biografia" class="form-control"><?php echo $biografia ?></textarea>
             </div>
 
-           
+
             <div class="form-group">
-            <label for="indirizzo">Indirizzo:</label>
-            <input type="text" id="indirizzo" name="indirizzo" class="form-control" value="<?php echo $indirizzo ?>">
+                <label for="indirizzo">Indirizzo:</label>
+                <input type="text" id="indirizzo" name="indirizzo" class="form-control" value="<?php echo $indirizzo ?>">
+            </div>
+
+            <div class="form-group">
+                <label for="telefono">Numero di telefono:</label>
+                <input type="tel" id="telefono" name="telefono" class="form-control" value="<?php echo $numeroTelefono ?>">
+            </div>
+
+            <div class="form-group">
+                <label for="professione">Professione:</label>
+                <input type="text" id="professione" name="professione" class="form-control" value="<?php echo $professione ?>">
+            </div>
+
+            <div class="form-group">
+                <label for="visibilita">Visibilità dell'account:</label>
+                <select id="visibilita" name="visibilita" class="form-control">
+                    <option value="T" <?php if ($visibilitaAccount == 'T') echo 'selected' ?>>Tutti</option>
+                    <option value="A" <?php if ($visibilitaAccount == 'A') echo 'selected' ?>>Amici</option>
+                    <option value="AA" <?php if ($visibilitaAccount == 'AA') echo 'selected' ?>>Amici di amici</option>
+                </select>
+            </div>
+
+
+            <div class="form-group">
+                <label for="dataIscrizione">Data di iscrizione:</label>
+                <input type="text" id="dataIscrizione" name="dataIscrizione" class="form-control" value="<?php echo $dataIscrizione ?>" readonly>
+            </div>
+
+            <div class="form-group">
+                <label for="ultimoAccesso">Ultimo accesso:</label>
+                <input type="text" id="ultimoAccesso" name="ultimoAccesso" class="form-control" value="<?php echo $ultimoAccesso ?>" readonly>
+            </div>
+
+            <div class="form-group d-flex justify-content-between">
+                <div class="text-left">
+                    <input type="submit" value="Indietro" class="btn btn-primary" formaction="area_privata_personale.php">
+                </div>
+                <div class="text-center">
+                    <input type="submit" value="Salva modifiche" name="impostazioni" class="btn btn-primary">
+                </div>
+                <div class="text-right">
+                    <button type='button' class='btn btn-primary btn-danger' data-toggle='modal' data-target='#exampleModalCenter'>Elimina profilo</button>
+                </div>
+            </div>
+
+                <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Sei sicuro di voler elimanare il post?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Indietro</button>
+                    <button type="button" class="btn btn-primary" id="deleteProfilo">Elimina</button>
+                    
+
+
+                </div>
+            </div>
         </div>
-
-        <div class="form-group">
-            <label for="telefono">Numero di telefono:</label>
-            <input type="tel" id="telefono" name="telefono" class="form-control" value="<?php echo $numeroTelefono ?>">
-        </div>
-
-        <div class="form-group">
-            <label for="professione">Professione:</label>
-            <input type="text" id="professione" name="professione" class="form-control" value="<?php echo $professione ?>">
-        </div>
-
-        <div class="form-group">
-            <label for="visibilita">Visibilità dell'account:</label>
-            <select id="visibilita" name="visibilita" class="form-control">
-                <option value="T" <?php if ($visibilitaAccount == 'T') echo 'selected' ?>>Tutti</option>
-                <option value="A" <?php if ($visibilitaAccount == 'A') echo 'selected' ?>>Amici</option>
-                <option value="AA" <?php if ($visibilitaAccount == 'AA') echo 'selected' ?>>Amici di amici</option>
-            </select>
-        </div>
+    </div>
 
 
-        <div class="form-group">
-            <label for="dataIscrizione">Data di iscrizione:</label>
-            <input type="text" id="dataIscrizione" name="dataIscrizione" class="form-control" value="<?php echo $dataIscrizione ?>" readonly>
-        </div>
 
-        <div class="form-group">
-            <label for="ultimoAccesso">Ultimo accesso:</label>
-            <input type="text" id="ultimoAccesso" name="ultimoAccesso" class="form-control" value="<?php echo $ultimoAccesso ?>" readonly>
-        </div>
-
-        <div class="form-group">
-        <input type="submit" value="Indietro" class="btn btn-primary" formaction="area_privata_personale.php">
-            <input type="submit" value="Salva modifiche" name="impostazioni" class="btn btn-primary">
-        </div>
+        </form>
+    </div><br><br>
+    <?php include 'footer.php'; ?>
+    <script>
+    document.getElementById("deleteProfilo").addEventListener("click", function() {
+        eliminaProfilo(<?php echo $_SESSION['idProfilo']; ?>);
+    });
 
 
-    </form>
-</div><br><br>
-<?php include 'footer.php'; ?>
+    function eliminaProfilo(idProfilo) {
+
+
+        // Crea una richiesta AJAX per eliminare il post
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "eliminaProfilo.php", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.onreadystatechange = function() {
+            if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+                location.href = 'index.php';
+            }
+        }
+        xhr.send("idProfilo=" + idProfilo);
+    }
+</script>
 </body>
+
 </html>
