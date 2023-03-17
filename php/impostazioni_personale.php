@@ -69,7 +69,7 @@ function visibilitaAccount($visibilitaAccount)
 </head>
 <style>
     body {
-        background-color: #a5beda;
+        background-color: #E6E6E6;
     }
 </style>
 

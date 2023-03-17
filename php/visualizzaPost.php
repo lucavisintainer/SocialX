@@ -31,7 +31,7 @@ if (!isset($_SESSION['loggato']) || $_SESSION['loggato'] != true) {
         }
        
 		body {
-			background-color: #a5beda;
+			background-color: #E6E6E6;
 		}
 	
     </style>

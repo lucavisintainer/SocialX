@@ -22,7 +22,15 @@ if (!isset($_SESSION['loggato']) || $_SESSION['loggato'] != true) {
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="../css/home.css">
 </head>
+<style>
+        body {
+			background-color: #E6E6E6;
+		}
+        .custom-bg {
+    background-color: #FFFFFF;
+}
 
+    </style>
 <body>  
     <?php
     include 'header.php';
@@ -78,11 +86,6 @@ function like($idPost)
     }
 }
 
-//salvare in un array(variabile globale) tutti i post presenti nel database    OK
-//mescolarli in modo casuale    OK
-//prendere i primi 10 dell'array e mostrarli OK
-//in fondo alla pagina bottone "carica altro" --> se viene cliccato allora aggiungo altri 20 post dalla variabile
-//globale dopo i primi 20, ...
 function postCasuali()
 {
     $idProfilo = $_SESSION['idProfilo'];
@@ -111,7 +114,7 @@ function stampa10Post()
         echo "<div class='container-fluid mt-5 text-center'><div class='row justify-content-center'><div class='col-md-2'></div> 
         <div class='col-md-8'><div><div class='card'>    
         <img class='card-img-top'" . convertToUrl($post_id) . "alt='Post'>
-        <div class='card-body'>
+        <div class='card-body custom-bg'>
         <h5 class='card-title'><a href='paginaUtente.php?id=". idProfiloAutorePost($post_id) ."'>" . idProfiloToUsername(idProfiloAutorePost($post_id)) . "</a></h5>
         <p class='card-text'>" . descrizionePost($post_id) . "</p>
             <a href='#' class='btn btn-primary'";

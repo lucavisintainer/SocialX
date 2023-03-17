@@ -85,11 +85,11 @@ function trovaIDpost($idUsername)
         }
     }
 
-	function caricamentoDB($descrizione,$tipoPost){
+	function caricamentoDB($descrizione,$tipoPost,$prezzo){
 		include 'connessione.php';
 		$fkProfilo=$_SESSION['idProfilo'];
 		$date = date("Y-m-d H:i:s");
-		$query = "INSERT INTO post(data,descrizione,fkProfilo,tipoPost,prezzo) VALUES('$date','$descrizione','$fkProfilo','$tipoPost','');";
+		$query = "INSERT INTO post(data,descrizione,fkProfilo,tipoPost,prezzo) VALUES('$date','$descrizione','$fkProfilo','$tipoPost','$prezzo');";
 		mysqli_query($db_conn, $query);
 	}
 
