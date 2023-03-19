@@ -160,4 +160,20 @@ function nLike($id){
         return $row["count(*)"];
     }
 }
+
+function postSponsorizzato($id){
+	include 'connessione.php';
+	$query = "SELECT tipoPost FROM post WHERE idPost='$id';";
+	$result = $db_conn->query($query);
+	if ($result->num_rows == 1) {
+        $row = $result->fetch_array(MYSQLI_ASSOC);
+        if($row["tipoPost"]=="N"){
+			return false;
+		}else{
+			return true;
+		}
+    }
+}
+
+
 ?>

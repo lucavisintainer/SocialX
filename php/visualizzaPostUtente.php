@@ -64,6 +64,7 @@ if (!isset($_SESSION['loggato']) || $_SESSION['loggato'] != true) {
         <div class="row">
             <div class="col-md-8">
                 <br><br>
+                <p><u><?php if(postSponsorizzato($idPost)){echo "Post sponsorizzato";}?></u></p>
                 <img <?php echo convertToUrl($idPost); ?>" class="img-fluid" alt="Post">
                 <!-- Sezione del post -->
                 <div class="card my-3">
