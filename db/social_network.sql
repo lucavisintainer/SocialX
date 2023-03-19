@@ -25,9 +25,9 @@ CREATE TABLE profilo (
     ultimoAccesso               DATETIME,
     biografia                   VARCHAR(255), 
     visibilitaAccount           ENUM('T', 'A', 'AA') DEFAULT 'T', /* Tutti - Amici - Amici di amici */               
-    indirizzo                   VARCHAR(30),         
+    indirizzo                   VARCHAR(100),         
     numeroTelefono              VARCHAR(20),
-    professione                 VARCHAR(30),
+    professione                 VARCHAR(255),
     PRIMARY KEY(idProfilo)
 ) ENGINE = InnoDB;
 
