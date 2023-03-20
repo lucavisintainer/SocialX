@@ -21,6 +21,9 @@
         <a class="nav-link" href="area_privata_personale.php">Account</a>
       </li>
       <li class="nav-item">
+        <a class="nav-link" href="notifiche.php">Notifiche</a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" href="logout.php">Esci</a>
       </li>
     </ul>

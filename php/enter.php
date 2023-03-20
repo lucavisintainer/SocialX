@@ -64,7 +64,7 @@
                 <input for="username" type="text" id="username" name="username" placeholder="Username o Email" required>
                 <input for="password" type="password" id="password" name="password" placeholder="Password" required />
                 <label style="color: red;" id="errLogin"></label>
-                <a href="">Password dimenticata?</a>
+                <a href="passwordDimenticata.php">Password dimenticata?</a>
                 <button type="submit" name="accedi" value="accedi">Accedi</button>
             </form>
         </div>

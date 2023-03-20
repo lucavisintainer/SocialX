@@ -42,7 +42,7 @@ if (!isset($_SESSION['loggato']) || $_SESSION['loggato'] != true) {
     if ($mostraForm) {
     if (count($_SESSION['array']) > 0) {                 //se l'array contiene altri post(oltre ai 10 già visualizzati)       
             echo "<br><br><br><div class='container'><div class='row'><div class='col text-center'>
-            <form method='post id='mostraPostForm'>
+            <form method='post' id='mostraPostForm'>
                 <input type='hidden' name='mostra' value='my_fmostraPost'>
                 <button type='button' class='btn btn-primary' onclick='mostraPost()'>Carica altri post</button>
             </form>
@@ -108,9 +108,7 @@ function stampa10Post()
     $first_10_post_ids = array_slice($_SESSION['array'], 0, 10); //prendo i primi 10
     $_SESSION['array'] = array_slice($_SESSION['array'], 10); //elimino i primi 10 dall'array
 
-    foreach ($first_10_post_ids as $post_id) {
-
-        
+    foreach ($first_10_post_ids as $post_id) {        
         echo "<div class='container-fluid mt-5 text-center'><div class='row justify-content-center'><div class='col-md-2'></div> 
         <div class='col-md-8'><div><div class='card'>    
         <img class='card-img-top'" . convertToUrl($post_id) . "alt='Post'>
@@ -123,6 +121,7 @@ function stampa10Post()
                   <input type='hidden' name='id_post' value='" . $post_id . "'>
             </form>
             </div></div></div></div></div></div>";
+
       
     }
 }
@@ -140,20 +139,5 @@ function convertToUrl($id)
     }
 }
 
-function verificaProprietario($idPost)
-{
-    include 'connessione.php';
-    $idProfilo =  $_SESSION['idProfilo'];
-    $query = "SELECT fkProfilo FROM post WHERE idPost='$idPost'";
-    $result = $db_conn->query($query);
-    if ($result->num_rows == 1) {
-        $row = $result->fetch_assoc();
-        if ($row['fkProfilo'] == $idProfilo) {
-            return true;    //il post è dell'utente loggato
-        } else {
-            return false;   //il post è dell'utente cercato
-        }
-    }
-}
 
 ?>
