@@ -23,6 +23,7 @@ function modificaLike($idPost)
         $date = date("Y-m-d H:i:s");
         $query = "INSERT INTO mipiace(data,fkProfilo,fkPost) VALUES('$date','$idProfilo','$idPost');";
         mysqli_query($db_conn, $query);
+        //inserire like in notifiche
     }
 }
 

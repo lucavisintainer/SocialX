@@ -16,7 +16,7 @@ if (!isset($_SESSION['loggato']) || $_SESSION['loggato'] != true) {
 
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" href="../img/icone/favicon.png" type="image/png"> 
+    <link rel="icon" href="../img/icone/favicon.png" type="image/png">
     <title>Post</title>
     <!-- Inclusione delle librerie Bootstrap e jQuery -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -29,10 +29,10 @@ if (!isset($_SESSION['loggato']) || $_SESSION['loggato'] != true) {
             height: 400px;
             overflow-y: scroll;
         }
-        body {
-			background-color: #E6E6E6;
-		}
 
+        body {
+            background-color: #E6E6E6;
+        }
     </style>
 </head>
 
@@ -64,7 +64,14 @@ if (!isset($_SESSION['loggato']) || $_SESSION['loggato'] != true) {
         <div class="row">
             <div class="col-md-8">
                 <br><br>
-                <p><u><?php if(postSponsorizzato($idPost)){echo "Post sponsorizzato";}?></u></p>
+                <div>
+                <p style="display: inline-block; margin-right: 10px;">
+    <b><a href="paginaUtente.php" <?php $_SESSION['utenteCercato'] = idProfiloToUsername(idProfiloAutorePost($idPost)); ?> ><?php echo idProfiloToUsername(idProfiloAutorePost($idPost));?></a></b>
+  </p>
+  <p style="display: inline-block;"><u><?php if(postSponsorizzato($idPost)){echo "Post sponsorizzato";}?></u></p>
+</div>
+
+
                 <img <?php echo convertToUrl($idPost); ?>" class="img-fluid" alt="Post">
                 <!-- Sezione del post -->
                 <div class="card my-3">
@@ -111,7 +118,7 @@ if (!isset($_SESSION['loggato']) || $_SESSION['loggato'] != true) {
                             <!-- Elenco dei commenti -->
                             <ul class="list-unstyled">
                                 <?php
-                                 $array_idCommenti = array();
+                                $array_idCommenti = array();
                                 $array_commenti = array();
                                 $array_idProfili = array();
                                 $array_Date = array();
@@ -124,17 +131,17 @@ if (!isset($_SESSION['loggato']) || $_SESSION['loggato'] != true) {
                                             array_push($array_idProfili, $row['fkProfilo']);
                                             array_push($array_Date, date("d/m/Y H:i", strtotime($row['data'])));
                                         }
-                                        $arrayUsername=idToUsername($array_idProfili);
-                                        
+                                        $arrayUsername = idToUsername($array_idProfili);
+
 
 
                                         // Ciclo for per stampare gli array
                                         for ($i = 0; $i < count($array_commenti); $i++) {
-                                            if(verificaCommento($array_idProfili[$i])){                                  
+                                            if (verificaCommento($array_idProfili[$i])) {
                                                 echo "<li><strong>$arrayUsername[$i]</strong> - $array_Date[$i] <a href='eliminaCommento.php?idCommento=$array_idCommenti[$i]&idPost=$idPost'><img src='../img/icone/delete.png' width='25' height='25'></a><br>$array_commenti[$i]</li>";
-                                            }else{                                       
+                                            } else {
                                                 echo  "<li><strong>$arrayUsername[$i]</strong> - $array_Date[$i]<br>$array_commenti[$i]</li>";
-                                            }                                           
+                                            }
                                         }
                                     } else {
                                         return false;
@@ -171,6 +178,7 @@ if (!isset($_SESSION['loggato']) || $_SESSION['loggato'] != true) {
     </div>
 
 </body>
+
 </html>
 
 <?php
@@ -206,13 +214,13 @@ function like($idPost)
     }
 }
 
-function verificaCommento($fkProfiloCommento){
+function verificaCommento($fkProfiloCommento)
+{
     $idProfilo =  $_SESSION['idProfilo'];
-    if($fkProfiloCommento==$idProfilo){
+    if ($fkProfiloCommento == $idProfilo) {
         return true;
-    }else{
+    } else {
         return false;
     }
-    
 }
 ?>

@@ -80,5 +80,17 @@ CREATE TABLE amicizia (
     PRIMARY KEY(idAmicizia)
 ) ENGINE = InnoDB;
 
+CREATE TABLE notifiche (
+    idNotifica                    INT                 NOT NULL    AUTO_INCREMENT,
+    fkProfilo                     INT                 NOT NULL,     /* CHI HA RICEVUTO LA NOTIFICA*/
+    tipo                          ENUM('LIKE','COMMENT') NOT NULL,   
+    /* LIKE: qualcuno ha messo like al post di fkProfilo COMMENT: qualcuno ha aggiunto un commento a un post di fkProfilo */
+    idAzione                      INT                 NOT NULL,               /* id commento o like --> si puo andare a vedere chi lo ha messo*/
+    view                          BOOLEAN           DEFAULT false,      /* view=FALSE --> la notifica non è stata vista, TRUE --> è stata vista e cancellata da pagina notifiche*/
+    data                          DATETIME           NOT NULL,
+    FOREIGN KEY(fkProfilo) REFERENCES profilo(idProfilo)  ON DELETE CASCADE ON UPDATE CASCADE,
+    PRIMARY KEY(idNotifica)
+) ENGINE = InnoDB;
+
 
 

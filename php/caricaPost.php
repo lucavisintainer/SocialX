@@ -42,13 +42,13 @@ if (!isset($_SESSION['loggato']) || $_SESSION['loggato'] != true) {
 						<?php
 						if (isset($_GET['errore'])) {
 							if ($_GET['errore'] == "erroreEstensione") {
-								echo "<div class='alert alert-danger' role='alert'>Errore: estensione non ammessa.</div>";
+								echo "<div class='alert alert-danger' role='alert'>Errore: estensione non ammessa</div>";
 							} else if ($_GET['errore'] == "erroreGrandezza") {
-								echo "<div class='alert alert-danger' role='alert'>Errore: la grandezza è superiore al limite consentito.</div>";
+								echo "<div class='alert alert-danger' role='alert'>Errore: la grandezza è superiore al limite consentito</div>";
 							} else if ($_GET['errore'] == "erroreDescrizione") {
-								echo "<div class='alert alert-danger' role='alert'>Errore: descrizione troppo lunga (max 255 caratteri).</div>";
+								echo "<div class='alert alert-danger' role='alert'>Errore: descrizione troppo lunga (max 255 caratteri)</div>";
 							} else {
-								echo "<div class='alert alert-danger' role='alert'>Errore nel caricamento del post, riprova.</div>";
+								echo "<div class='alert alert-danger' role='alert'>Errore nel caricamento del post, riprova</div>";
 							}
 						}
 						?>

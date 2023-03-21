@@ -21,7 +21,29 @@
         <a class="nav-link" href="area_privata_personale.php">Account</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="notifiche.php">Notifiche</a>
+        <a class="nav-link" href="notifiche.php">
+          Notifiche
+          <?php
+          include 'connessione.php';
+          $num_notifiche;
+          $idProfilo =  $_SESSION['idProfilo'];
+          $query = "SELECT COUNT(*) FROM notifiche WHERE fkProfilo='$idProfilo'";
+          $result = $db_conn->query($query);
+          if ($result->num_rows == 1) {
+            $row = $result->fetch_assoc();
+            $num_notifiche = $row['COUNT(*)'];
+          } else {
+            return false;         //problema query      
+          }
+
+          // Stampa del pallino con il numero di notifiche
+          if ($num_notifiche > 0) {
+            echo '<span class="badge badge-danger">' . $num_notifiche . '</span>';
+          } else {
+            echo '<span class="badge badge-secondary">' . $num_notifiche . '</span>';
+          }
+          ?>
+        </a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="logout.php">Esci</a>

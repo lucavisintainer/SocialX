@@ -115,8 +115,7 @@ function stampa10Post()
         <div class='card-body custom-bg'>
         <h5 class='card-title'><a href='paginaUtente.php?id=". idProfiloAutorePost($post_id) ."'>" . idProfiloToUsername(idProfiloAutorePost($post_id)) . "</a></h5>
         <p class='card-text'>" . descrizionePost($post_id) . "</p>
-            <a href='#' class='btn btn-primary'";
-            echo "<a href='#' class='btn btn-primary' onclick='document.getElementById(\"post_form\").submit()'>Vai al post</a>
+        <a href='#' class='btn btn-primary' onclick='document.getElementById(\"post_form\").submit()'>Vai al post</a>
             <form id='post_form' method='post' action='visualizzaPostUtente.php'>
                   <input type='hidden' name='id_post' value='" . $post_id . "'>
             </form>

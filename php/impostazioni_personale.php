@@ -8,7 +8,7 @@ if (!isset($_SESSION['loggato']) || $_SESSION['loggato'] != true) {
 include 'connessione.php';
 
 // Controlla se l'utente ha inviato un form di modifica
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['impostazioni'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['impostazioni'])){
     $username = $_SESSION['username'];
     $email = strtolower($_POST['email']);
     $biografia = $_POST['biografia'];
@@ -17,11 +17,51 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['impostazioni'])) {
     $professione = $_POST['professione'];
     $visibilita = $_POST['visibilita'];
 
+    function verificaBiografia($biografia){
+    //verificare che biografia sia meno di 255
+    return strlen($biografia) <= 255;
+    }
 
+    function verificaIndirizzo($indirizzo){
+        //verificare che indirizzo sia meno di 100
+        return strlen($indirizzo) <= 100;
+    }
+    function verificaTelefono($numeroTelefono){
+        //verificare che sia un numero di telefono
+        return preg_match("/^(\+?\d{1,3}\s?)?(\d{3,4}[\s.-]?)?\d{7,8}$/", $numeroTelefono);
+    }
+
+    function verificaProfessione($professione){
+        //verificare che professione sia meno di 255
+        return strlen($professione) <= 255;
+    }
+
+    $validBiografia = verificaBiografia($biografia);
+    $validIndirizzo = verificaIndirizzo($indirizzo);
+    $validTelefono = verificaTelefono($numeroTelefono);
+    $validProfessione = verificaProfessione($professione);
+
+    
+    if (!$validBiografia) {  
+        global $error;
+        $error="<div class='alert alert-danger' role='alert'>Campo biografia troppo lungo (max 255 caratteri)</div>";
+    }else if(!$validIndirizzo){
+        global $error;
+        $error="<div class='alert alert-danger' role='alert'>Campo indirizzo troppo lungo (max 255 caratteri)</div>";
+    }else if(!$validTelefono){
+        global $error;
+        $error="<div class='alert alert-danger' role='alert'>Numero di telefono non valido</div>";
+    }else if(!$validProfessione){
+        global $error;
+        $error="<div class='alert alert-danger' role='alert'>Campo professione troppo lungo (max 255 caratteri)</div>";
+    }else{
     // Esegui la query per aggiornare il profilo dell'utente
     $query = "UPDATE profilo SET email = '$email', biografia = '$biografia', indirizzo = '$indirizzo', numeroTelefono = '$numeroTelefono', professione = '$professione', visibilitaAccount = '$visibilita' WHERE username = '$username'";
     mysqli_query($db_conn, $query);
+    }
+
 }
+
 
 // Recupera i dati del profilo dell'utente
 $username = $_SESSION['username'];
@@ -77,6 +117,10 @@ function visibilitaAccount($visibilitaAccount)
     <?php include 'header.php'; ?>
     <div class="container mt-5">
         <h1 class="text-center mb-5">Impostazioni Profilo</h1>
+        <?php
+        global $error;
+        if($error!=""){echo $error;}
+		?>
         <form method="POST">
 
             <div class="form-group">

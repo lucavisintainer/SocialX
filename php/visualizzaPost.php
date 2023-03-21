@@ -71,7 +71,8 @@ if (!isset($_SESSION['loggato']) || $_SESSION['loggato'] != true) {
                 <!-- Sezione del post -->
                 <div class="card my-3">
                     <div class="card-header">
-                        <?php echo "<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#exampleModalCenter'>Elimina post</button>'"; ?>
+                    <?php echo "<button type='button' class='btn btn-primary btn-danger' data-toggle='modal' data-target='#exampleModalCenter'>Elimina post</button>'"; ?>
+
                     </div>
 
                     <div class="card-body" style="display: flex; align-items: center;">
