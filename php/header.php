@@ -1,3 +1,5 @@
+
+
 <link rel="stylesheet" type="text/css" href="../css/header.css">
 <style>
   .nav-link {
@@ -25,13 +27,16 @@
           Notifiche
           <?php
           include 'connessione.php';
+          
+          
           $num_notifiche;
           $idProfilo =  $_SESSION['idProfilo'];
-          $query = "SELECT COUNT(*) FROM notifiche WHERE fkProfilo='$idProfilo'";
+          $query = "SELECT COUNT(*) FROM notifiche WHERE fkProfilo='$idProfilo' AND view='false'";
           $result = $db_conn->query($query);
           if ($result->num_rows == 1) {
             $row = $result->fetch_assoc();
             $num_notifiche = $row['COUNT(*)'];
+            $_SESSION['notifiche']=$num_notifiche;
           } else {
             return false;         //problema query      
           }
