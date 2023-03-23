@@ -78,8 +78,6 @@ if (!isset($_SESSION['loggato']) || $_SESSION['loggato'] != true) {
 			</div>
             <div class="follow-button">
                 <form method="post" action="">
-
-            
                     <button class="btn3" value="followerButton" name="followerButton" type="submit"><?php echo followButton(); ?></button>
 
                     <?php

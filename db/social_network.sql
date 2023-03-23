@@ -89,8 +89,6 @@ CREATE TABLE notifiche (
     view                          BOOLEAN           DEFAULT false,      /* view=FALSE --> la notifica non è stata vista, TRUE --> è stata vista e cancellata da pagina notifiche*/
     data                          DATETIME           NOT NULL,
     FOREIGN KEY(fkProfilo) REFERENCES profilo(idProfilo)  ON DELETE CASCADE ON UPDATE CASCADE,
-   FOREIGN KEY (idAzione) REFERENCES mipiace(idLike) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (idAzione) REFERENCES commento(idCommento) ON DELETE CASCADE ON UPDATE CASCADE,
     PRIMARY KEY(idNotifica)
 ) ENGINE = InnoDB;
 

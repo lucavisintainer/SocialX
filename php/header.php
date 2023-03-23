@@ -26,13 +26,12 @@
         <a class="nav-link" href="notifiche.php">
           Notifiche
           <?php
-          include 'connessione.php';
-          
-          
+          include 'connessione.php'; 
           $num_notifiche;
+          //count tabelle notifiche
           $idProfilo =  $_SESSION['idProfilo'];
-          $query = "SELECT COUNT(*) FROM notifiche WHERE fkProfilo='$idProfilo' AND view='false'";
-          $result = $db_conn->query($query);
+          $query1 = "SELECT COUNT(*) FROM notifiche WHERE fkProfilo='$idProfilo' AND view='false'";
+          $result = $db_conn->query($query1);
           if ($result->num_rows == 1) {
             $row = $result->fetch_assoc();
             $num_notifiche = $row['COUNT(*)'];
@@ -40,6 +39,18 @@
           } else {
             return false;         //problema query      
           }
+          
+          //count richiesta di amicizia tabella amicizia
+          $query2 = "SELECT COUNT(*) FROM amicizia WHERE fkProfilo2='$idProfilo' AND stato='IN ATTESA'";
+          $result = $db_conn->query($query2);
+          if ($result->num_rows == 1) {
+            $row = $result->fetch_assoc();
+            $num_notifiche += $row['COUNT(*)'];
+            $_SESSION['notifiche']+=$num_notifiche;
+          } else {
+            return false;         //problema query      
+          }
+
 
           // Stampa del pallino con il numero di notifiche
           if ($num_notifiche > 0) {

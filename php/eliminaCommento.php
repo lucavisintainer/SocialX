@@ -5,6 +5,8 @@ $idCommento = $_GET['idCommento'];
 $idPost = $_GET['idPost'];
 $query = "UPDATE commento SET stato='ELIMINATO' WHERE idCommento=$idCommento";
 mysqli_query($db_conn, $query);
+$query2 = "DELETE FROM notifiche WHERE (tipo='COMMENT' AND idAzione=$idCommento);";
+mysqli_query($db_conn, $query2);
 if(verificaProprietario($idPost)){
     header("Location: visualizzaPost.php?id_post=" . $idPost);   
 }else{

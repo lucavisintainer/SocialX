@@ -1,6 +1,8 @@
 <?php
 session_start();
 include 'connessione.php';
+include 'query.php';
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['nuovo-commento'])) {
     $idProfilo = $_SESSION['idProfilo'];
     $date = date("Y-m-d H:i:s");
@@ -9,6 +11,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['nuovo-commento'])) {
     if (!empty($commento)) {
         $query = "INSERT INTO commento(data,testo,fkProfilo,fkPost,stato) VALUES('$date','$commento','$idProfilo','$idPost','PUBBLICATO');";
         mysqli_query($db_conn, $query);
+        $query2 = "INSERT INTO notifiche(fkProfilo,tipo,idAzione,view,data) VALUES(".idProfiloAutorePost($idPost).",'COMMENT','".(lastIdCommenti())."','false','$date');";
+        mysqli_query($db_conn, $query2);
         if(verificaProprietario($idPost)){
             header("Location: visualizzaPost.php?id_post=" . $idPost);    
         }else{

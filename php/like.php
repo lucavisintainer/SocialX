@@ -1,6 +1,8 @@
 <?php
 session_start();
 include 'connessione.php';
+include 'query.php';
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['likeButton'])) {
     $idPost = $_POST['id_post'];
     modificaLike($idPost);
@@ -23,7 +25,8 @@ function modificaLike($idPost)
         $date = date("Y-m-d H:i:s");
         $query = "INSERT INTO mipiace(data,fkProfilo,fkPost) VALUES('$date','$idProfilo','$idPost');";
         mysqli_query($db_conn, $query);
-        //inserire like in notifiche
+        $query2 = "INSERT INTO notifiche(fkProfilo,tipo,idAzione,view,data) VALUES(".idProfiloAutorePost($idPost).",'LIKE','".(lastIdlike())."','false','$date');";
+        mysqli_query($db_conn, $query2);
     }
 }
 

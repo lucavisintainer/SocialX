@@ -53,6 +53,7 @@ if (!isset($_SESSION['loggato']) || $_SESSION['loggato'] != true) {
   include 'header.php';
   global $arrayFollowAmico;
   global $arrayFollowData;
+  global $arrayIdCommenti;
 
   if ($_SESSION['notifiche'] == 0) {
     echo "<br><br><br><br><br><br><br><br><br><div class='container d-flex justify-content-center align-items-center'>
@@ -65,19 +66,39 @@ if (!isset($_SESSION['loggato']) || $_SESSION['loggato'] != true) {
 
     if (follow() == true) { //se hai richieste di amicizia in sospeso
       for ($i = 0; $i < count($arrayFollowAmico); $i++) {
-        echo    "<li class='list-group-item'>Hai ricevuto una richiesta di amicizia da Mario Rossi 
+        echo    "<li class='list-group-item'>Hai ricevuto una richiesta di amicizia da <a href='paginaUtente.php'> <b>" . idProfiloToUsername($arrayFollowAmico[$i]) . "</b></a>
                 <div class='btn-group ml-2' role='group'>
-                <button type='button'class='btn btn-success'>Accetta</button>
-                  <button type='button' class='btn btn-danger'>Rifiuta</button>
-                  </div>
+                <form method='post' action=''>
+                <button type='submit' value=" . $arrayFollowAmico[$i] . " name='accettaAmicizia' class='btn btn-success'>Accetta</button>
+               <button type='submit' value=" . $arrayFollowAmico[$i] . " name='rifiutaAmicizia' class='btn btn-danger'>Rifiuta</button>
+               </form>
+               </div>
                 </li>";
+        $_SESSION['utenteCercato'] = idProfiloToUsername($arrayFollowAmico[$i]);
       }
     }
-    echo        "<li class='list-group-item'>Il tuo post ha ricevuto un like da Mario Rossi
-                </li>
-                <li class='list-group-item'>Mario Rossiha commentato il tuo post con: ...
-                </li> 
-              </ul>
+
+    if (commenti() == true) {   //se hai commenti nuovi
+      for ($i = 0; $i < count($arrayIdCommenti); $i++) {
+        echo "<li class='list-group-item'>
+                <a href='paginaUtente.php'><b>" . idProfiloToUsername(autoreCommento($arrayIdCommenti[$i])) .
+          "</b></a> ha commentato il tuo <a href='visualizzaPostUtente.php?id_post=" . idCommentoToIdPost($arrayIdCommenti[$i]) . "'><b>post</b></a>: 
+                " . testoCommento($arrayIdCommenti[$i]) .
+          "<div class='btn-group ml-0' style='left: 1070px;' role='group'>
+                <a href='eliminaNotifica.php?idAzione=".$arrayIdCommenti[$i]."&tipo=commento'>
+                 <img src='../img/icone/delete.png' width='25' height='25'>
+               </a>
+            </div>
+            
+                </li>";
+
+        $_SESSION['utenteCercato'] = idProfiloToUsername(autoreCommento($arrayIdCommenti[$i]));
+      }
+    }
+    if (like() == true) {   //se hai like nuovi
+    echo        "<li class='list-group-item'>Il tuo post ha ricevuto un like da Mario Rossi</li>";
+    }       
+    echo         "</ul>
           </div><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
   } ?>
   <?php include 'footer.php'; ?>
@@ -92,7 +113,6 @@ function follow()
   $idProfilo =  $_SESSION['idProfilo'];
   $query = "SELECT * FROM amicizia WHERE fkProfilo2='$idProfilo' AND stato='IN ATTESA'";
   $result = $db_conn->query($query);
-  $arrayFollow = array();
   if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) { //itera sui risultati
       global $arrayFollowAmico;
@@ -105,4 +125,105 @@ function follow()
     return false; //Non ci sono richieste di amicizia
   }
 }
+
+
+
+function commenti()
+{
+  include 'connessione.php';
+  $idProfilo =  $_SESSION['idProfilo'];
+  $query = "SELECT * FROM notifiche WHERE fkProfilo='$idProfilo' AND tipo='COMMENT' AND view='0'";
+  $result = $db_conn->query($query);
+  if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) { //itera sui risultati
+      global $arrayIdCommenti;
+      $arrayIdCommenti[] = $row['idAzione'];
+      global $arrayDataCommenti;
+      $arrayDataCommenti[] = $row['data'];   //quando è stato messo il commento
+      return true;
+    }
+  } else {
+    return false; //Non ci sono nuovi commenti
+  }
+}
+
+function like(){
+  include 'connessione.php';
+  $idProfilo =  $_SESSION['idProfilo'];
+  $query = "SELECT * FROM notifiche WHERE fkProfilo='$idProfilo' AND tipo='LIKE' AND view='0'";
+  $result = $db_conn->query($query);
+  if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) { //itera sui risultati
+      global $arrayIdLike;
+      $arrayIdLike[] = $row['idAzione'];
+      global $arrayDataLike;
+      $arrayDataLike[] = $row['data'];   //quando è stato messo il like
+      return true;
+    }
+  } else {
+    return false; //Non ci sono nuovi commenti
+  }
+}
+
+
+function autoreCommento($idCommento)
+{    //tramite l'id del commento si va a vedere chi ha messo quel commento
+  include 'connessione.php';
+  $query = "SELECT fkProfilo FROM commento WHERE idCommento='$idCommento'";
+  $result = $db_conn->query($query);
+  if ($result->num_rows == 1) {
+    $row = $result->fetch_assoc();
+    return $row['fkProfilo'];
+  } else {
+    return false; //Non esiste un commento con questo ID
+  }
+}
+
+function testoCommento($idCommento)
+{
+  include 'connessione.php';
+  $query = "SELECT testo FROM commento WHERE idCommento='$idCommento'";
+  $result = $db_conn->query($query);
+  if ($result->num_rows == 1) {
+    $row = $result->fetch_assoc();
+    return $row['testo'];
+  } else {
+    return false; //Non esiste un commento con questo ID
+  }
+}
+
+
+function idCommentoToIdPost($idCommento)
+{
+  include 'connessione.php';
+  $query = "SELECT fkPost FROM commento WHERE idCommento='$idCommento'";
+  $result = $db_conn->query($query);
+  if ($result->num_rows == 1) {
+    $row = $result->fetch_assoc();
+    return $row['fkPost'];
+  } else {
+    return false; //Non esiste un commento con questo ID
+  }
+}
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['accettaAmicizia'])) {
+  include 'connessione.php';
+  $idUtente = $_SESSION['idProfilo'];
+  $idUtenteCercato = $_POST['accettaAmicizia'];
+  $date = date("Y-m-d H:i:s");
+  $query = "UPDATE amicizia SET stato = 'AMICI' WHERE (fkProfilo1 = '$idUtenteCercato' AND fkProfilo2 = '$idUtente');";
+  mysqli_query($db_conn, $query);
+  header("Refresh:0");
+}
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['rifiutaAmicizia'])) {
+  include 'connessione.php';
+  $idUtente = $_SESSION['idProfilo'];
+  $idUtenteCercato = $_POST['rifiutaAmicizia'];
+  $query = "DELETE FROM amicizia WHERE (fkProfilo1 = '$idUtente' AND fkProfilo2 = '$idUtenteCercato') OR (fkProfilo1 = '$idUtenteCercato' AND fkProfilo2 = '$idUtente');";
+  mysqli_query($db_conn, $query);
+  header("Refresh:0");
+}
+
+
 ?>

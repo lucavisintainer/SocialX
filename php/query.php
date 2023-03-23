@@ -154,6 +154,31 @@ function trovaIDpost($idUsername)
     }
 }
 
+function lastIdCommenti() {
+    include 'connessione.php';
+    $query = "SELECT idCommento FROM commento ORDER BY idCommento DESC LIMIT 1";
+    $result = $db_conn->query($query);
+    if ($result->num_rows == 1) {
+        $row = $result->fetch_array(MYSQLI_ASSOC);
+        return $row['idCommento'];
+    } else {
+        return null;
+    }
+}
+
+function lastIdlike() {
+    include 'connessione.php';
+    $query = "SELECT idLike FROM mipiace ORDER BY idLike DESC LIMIT 1";
+    $result = $db_conn->query($query);
+    if ($result->num_rows == 1) {
+        $row = $result->fetch_array(MYSQLI_ASSOC);
+        return $row['idLike'];
+    } else {
+        return null;
+    }
+}
+
+
 function nLike($id){
 	include 'connessione.php';
 	$query = "SELECT count(*) FROM mipiace WHERE fkPost='$id';";
