@@ -11,8 +11,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['nuovo-commento'])) {
     if (!empty($commento)) {
         $query = "INSERT INTO commento(data,testo,fkProfilo,fkPost,stato) VALUES('$date','$commento','$idProfilo','$idPost','PUBBLICATO');";
         mysqli_query($db_conn, $query);
+        if(!verificaProprietario($idPost)){   
         $query2 = "INSERT INTO notifiche(fkProfilo,tipo,idAzione,view,data) VALUES(".idProfiloAutorePost($idPost).",'COMMENT','".(lastIdCommenti())."','false','$date');";
         mysqli_query($db_conn, $query2);
+        }
         if(verificaProprietario($idPost)){
             header("Location: visualizzaPost.php?id_post=" . $idPost);    
         }else{

@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['impostazioni'])){
     }else if(!$validIndirizzo){
         global $error;
         $error="<div class='alert alert-danger' role='alert'>Campo indirizzo troppo lungo (max 255 caratteri)</div>";
-    }else if(!$validTelefono){
+    }else if(!$validTelefono && $numeroTelefono!=""){
         global $error;
         $error="<div class='alert alert-danger' role='alert'>Numero di telefono non valido</div>";
     }else if(!$validProfessione){

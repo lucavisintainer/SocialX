@@ -19,14 +19,20 @@ function modificaLike($idPost)
     include 'connessione.php';
     $idProfilo = $_SESSION['idProfilo'];
     if (like($idPost)) {
+        $query2 = "DELETE FROM notifiche WHERE tipo ='LIKE' AND idAzione = '".trovaIdLike($idProfilo,$idPost)."'";
+        mysqli_query($db_conn, $query2);
         $query = "DELETE FROM mipiace WHERE (fkProfilo = '$idProfilo' AND fkPost = '$idPost')";
         mysqli_query($db_conn, $query);
     } else {
         $date = date("Y-m-d H:i:s");
         $query = "INSERT INTO mipiace(data,fkProfilo,fkPost) VALUES('$date','$idProfilo','$idPost');";
         mysqli_query($db_conn, $query);
-        $query2 = "INSERT INTO notifiche(fkProfilo,tipo,idAzione,view,data) VALUES(".idProfiloAutorePost($idPost).",'LIKE','".(lastIdlike())."','false','$date');";
-        mysqli_query($db_conn, $query2);
+        if(!verificaProprietario($idPost)){  
+            //se nella tabella notifiche esiste già una tuple del like allora non aggiungo niente
+            $query2 = "INSERT INTO notifiche(fkProfilo,tipo,idAzione,view,data) VALUES(".idProfiloAutorePost($idPost).",'LIKE','".(lastIdlike())."','false','$date');";
+            mysqli_query($db_conn, $query2);
+        
+    }
     }
 }
 
@@ -58,6 +64,18 @@ function verificaProprietario($idPost){
     }
 
 }
+
+function trovaIdLike($idProfilo,$idPost){
+    include 'connessione.php';
+    $query = "SELECT idLike FROM mipiace WHERE fkProfilo='$idProfilo' AND fkPost='$idPost'";
+    $result = $db_conn->query($query);
+    if ($result->num_rows == 1) {
+        $row = $result->fetch_assoc();
+        return $row['idLike'];
+    }else{
+            return false;   
+        }
+    }
 
 ?>
 

@@ -12,7 +12,7 @@ if($tipo=="commento"){
 }else if($tipo=="like"){
     if(isset($_GET['idAzione'])){
     $idAzione = $_GET['idAzione'];
-    $query = "UPDATE notifiche SET view='true' WHERE (tipo='LIKE' AND idAzione=$idAzione);";
+    $query = "UPDATE notifiche SET view=true WHERE (tipo='LIKE' AND idAzione=$idAzione);";
     mysqli_query($db_conn, $query);
     header("Location: notifiche.php"); 
     }
