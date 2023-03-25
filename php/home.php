@@ -28,7 +28,14 @@ if (!isset($_SESSION['loggato']) || $_SESSION['loggato'] != true) {
 		}
         .custom-bg {
     background-color: #FFFFFF;
+    
 }
+#mostraPostForm button[type="button"] {
+    width: 200px;
+    margin-right: auto;
+    margin-left: -150px;
+}
+
 
     </style>
 <body>  
@@ -90,7 +97,11 @@ function postCasuali()
 {
     $idProfilo = $_SESSION['idProfilo'];
     include 'connessione.php';
-    $query = "SELECT idPost FROM post WHERE fkProfilo != $idProfilo";
+    $query = "SELECT idPost 
+              FROM post 
+              WHERE fkProfilo != $idProfilo AND fkProfilo NOT IN ( SELECT idProfilo 
+                                                                   FROM profilo 
+                                                                   WHERE visibilitaAccount = 'A')";
     $result = $db_conn->query($query);
     $id_array = array();                //array vuoto dove memorizzare gli ID dei post
     if ($result->num_rows > 0) {        //se c'è almeno un post

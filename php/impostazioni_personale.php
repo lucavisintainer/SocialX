@@ -82,10 +82,8 @@ function visibilitaAccount($visibilitaAccount)
 {
     if ($visibilitaAccount == 'T') {
         return 'Tutti';
-    } else if ($visibilitaAccount == 'A') {
+    } else{
         return 'Amici';
-    } else {
-        return 'Amici di amici';
     }
 }
 
@@ -154,7 +152,6 @@ function visibilitaAccount($visibilitaAccount)
                 <select id="visibilita" name="visibilita" class="form-control">
                     <option value="T" <?php if ($visibilitaAccount == 'T') echo 'selected' ?>>Tutti</option>
                     <option value="A" <?php if ($visibilitaAccount == 'A') echo 'selected' ?>>Amici</option>
-                    <option value="AA" <?php if ($visibilitaAccount == 'AA') echo 'selected' ?>>Amici di amici</option>
                 </select>
             </div>
 

@@ -17,12 +17,12 @@ if (!isset($_SESSION['loggato']) || $_SESSION['loggato'] != true) {
 <head>
 	<title>Profilo utente</title>
 	<link rel="stylesheet" type="text/css" href="../css/area_privata_personale.css">
-	<link rel="icon" href="../img/icone/favicon.png" type="image/png"> 
+	<link rel="icon" href="../img/icone/favicon.png" type="image/png">
 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 	<style>
 		body {
 			background-color: #E6E6E6;
@@ -34,10 +34,10 @@ if (!isset($_SESSION['loggato']) || $_SESSION['loggato'] != true) {
 
 <body>
 	<?php
-		include 'header.php';
+	include 'header.php';
 	global $idProfilo;
 	$idProfilo = $_SESSION['idProfilo'];
-	
+
 	function esiste()
 	{
 		$idProfilo = $_SESSION['idProfilo'];
@@ -64,19 +64,21 @@ if (!isset($_SESSION['loggato']) || $_SESSION['loggato'] != true) {
 											} else {
 												echo "../img/icone/upload_immagine_profilo1.jpg";
 											} ?>" alt="Foto profilo" name="photo" onclick="caricaImmagineJS()">
-	
+
 
 				<div class="info">
 					<h2>Ciao <b><?php echo $_SESSION['username']; ?></b></h2><br>
 					<p><b>Username:</b> @<?php echo $_SESSION['username']; ?></p>
 					<?php echo biografia($idProfilo); ?>
-					
+
 				</div>
 			</div>
-			
+
 
 			<div class="user-stats">
-				<p><b>Amici:</b> <?php  echo amicizie($idProfilo); ?></p>
+				<a href="amicizie.php">
+					<p><b>Amici</a>:</b>
+				<?php echo amicizie($idProfilo); ?></p>
 				<p><b>Post:</b> <?php echo post($idProfilo); ?></p>
 			</div>
 
@@ -86,9 +88,9 @@ if (!isset($_SESSION['loggato']) || $_SESSION['loggato'] != true) {
 			</div>
 
 			<?php if (trovaIDpost($idProfilo) == false) { ?> <br><br><br><br><br><br><br><br> <?php echo "Non sono presenti post";
-																			} else {
-																				echo mostraPost();
-																			}	?>
+																							} else {
+																								echo mostraPost();
+																							}	?>
 			<br><br><br><br><br><br><br><br>
 		</div>
 	</div>
@@ -110,55 +112,56 @@ if (!isset($_SESSION['loggato']) || $_SESSION['loggato'] != true) {
 		}
 	}
 
-	function mostraPost(){
+	function mostraPost()
+	{
 		$idProfilo = $_SESSION['idProfilo'];
-    $output = "<div class='user-photos'><table>";
-    $id_array = trovaIDpost($idProfilo);
-    if (!empty($id_array)) {
-        rsort($id_array); // ordina gli ID dei post in ordine decrescente
-        $img = "";
-        $count = 0; // contatore per tenere traccia del numero di foto nella riga corrente
-		for ($i = 0; $i < count($id_array); $i++) {
-			$img = convertToUrl($id_array[$i]);
-			if ($count == 0) {
-				// se è la prima foto nella riga corrente, apri una nuova riga e un form per il post
-				$output .= "<tr><td>";
-				$output .= "<form method='POST' action='visualizzaPost.php'>";
-				$output .= "<input type='hidden' name='id_post' value='$id_array[$i]'>";
-				$output .= "<button style='border: none;' type='submit'>$img</button>";
-				$output .= "</form></td>";
-			} elseif ($count == 2) {
-				// se è l'ultima foto nella riga corrente, chiudi la riga e il form
-				$output .= "<td>";
-				$output .= "<form method='POST' action='visualizzaPost.php'>";
-				$output .= "<input type='hidden' name='id_post' value='$id_array[$i]'>";
-				$output .= "<button style='border: none;' type='submit'>$img</button>";
-				$output .= "</form></td></tr>";
-				$count = -1;
-			} else {
-				// altrimenti, aggiungi la foto alla riga corrente e il form
-				$output .= "<td>";
-				$output .= "<form method='POST' action='visualizzaPost.php'>";
-				$output .= "<input type='hidden' name='id_post' value='$id_array[$i]'>";
-				$output .= "<button style='border: none;' type='submit'>$img</button>";
-				$output .= "</form></td>";
+		$output = "<div class='user-photos'><table>";
+		$id_array = trovaIDpost($idProfilo);
+		if (!empty($id_array)) {
+			rsort($id_array); // ordina gli ID dei post in ordine decrescente
+			$img = "";
+			$count = 0; // contatore per tenere traccia del numero di foto nella riga corrente
+			for ($i = 0; $i < count($id_array); $i++) {
+				$img = convertToUrl($id_array[$i]);
+				if ($count == 0) {
+					// se è la prima foto nella riga corrente, apri una nuova riga e un form per il post
+					$output .= "<tr><td>";
+					$output .= "<form method='POST' action='visualizzaPost.php'>";
+					$output .= "<input type='hidden' name='id_post' value='$id_array[$i]'>";
+					$output .= "<button style='border: none;' type='submit'>$img</button>";
+					$output .= "</form></td>";
+				} elseif ($count == 2) {
+					// se è l'ultima foto nella riga corrente, chiudi la riga e il form
+					$output .= "<td>";
+					$output .= "<form method='POST' action='visualizzaPost.php'>";
+					$output .= "<input type='hidden' name='id_post' value='$id_array[$i]'>";
+					$output .= "<button style='border: none;' type='submit'>$img</button>";
+					$output .= "</form></td></tr>";
+					$count = -1;
+				} else {
+					// altrimenti, aggiungi la foto alla riga corrente e il form
+					$output .= "<td>";
+					$output .= "<form method='POST' action='visualizzaPost.php'>";
+					$output .= "<input type='hidden' name='id_post' value='$id_array[$i]'>";
+					$output .= "<button style='border: none;' type='submit'>$img</button>";
+					$output .= "</form></td>";
+				}
+				$count++;
 			}
-			$count++;
+
+			// se ci sono ancora foto in attesa di essere chiuse in una riga, chiudo qui
+			if ($count > 0 && $count < 3) {
+				$output .= str_repeat("<td></td>", 3 - $count) . "</tr>";
+			}
+			return $output .= "</table></div>";
+		} else {
+			return "";
 		}
-		
-    // se ci sono ancora foto in attesa di essere chiuse in una riga, chiudo qui
-        if ($count > 0 && $count < 3) {
-            $output .= str_repeat("<td></td>", 3 - $count) . "</tr>";
-        }
-        return $output .= "</table></div>";
-    } else {
-        return "";
-    }
-}
+	}
 
 	include 'footer.php';
 	?>
-	
+
 </body>
 
 </html>

@@ -42,6 +42,8 @@ function trovaIDpost($idUsername)
 		
 	}
 
+	
+
 	function post($idUtente){
 		include 'connessione.php';
 		$query = "SELECT count(*) FROM post WHERE fkProfilo = '$idUtente';";
@@ -203,5 +205,18 @@ function postSponsorizzato($id){
     }
 }
 
-
+function visibilitaAccount($idUsername){
+	include 'connessione.php';
+	$query = "SELECT visibilitaAccount FROM profilo WHERE idProfilo='$idUsername'";
+	if ($result = $db_conn->query($query)) {
+		if ($result->num_rows == 1) {
+			$row = $result->fetch_array(MYSQLI_ASSOC);
+			return $row['visibilitaAccount'];
+		}
+	}else {
+			echo "Query non riuscita";
+			return false;
+		}
+}	
+		
 ?>

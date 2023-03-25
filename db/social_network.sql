@@ -24,7 +24,7 @@ CREATE TABLE profilo (
     dataIscrizione              DATETIME            NOT NULL,
     ultimoAccesso               DATETIME            DEFAULT dataIscrizione,
     biografia                   VARCHAR(255), 
-    visibilitaAccount           ENUM('T', 'A', 'AA') DEFAULT 'T', /* Tutti - Amici - Amici di amici */               
+    visibilitaAccount           ENUM('T', 'A') DEFAULT 'T', /* Tutti - Amici */               
     indirizzo                   VARCHAR(100),         
     numeroTelefono              VARCHAR(20),
     professione                 VARCHAR(255),
@@ -90,6 +90,19 @@ CREATE TABLE notifiche (
     data                          DATETIME           NOT NULL,
     FOREIGN KEY(fkProfilo) REFERENCES profilo(idProfilo)  ON DELETE CASCADE ON UPDATE CASCADE,
     PRIMARY KEY(idNotifica)
+) ENGINE = InnoDB;
+
+
+CREATE TABLE messaggi (
+    idMessaggio                    INT                 NOT NULL    AUTO_INCREMENT,
+    fkProfilo1                     INT                 NOT NULL,    /* INVIA IL MESSAGGIO*/
+    fkProfilo2                     INT                 NOT NULL,    /* RICEVE IL MESSAGGIO*/
+    testo                          TEXT                NOT NULL,
+    data                          DATETIME           NOT NULL,
+    view                          BOOLEAN           DEFAULT false, 
+    FOREIGN KEY(fkProfilo1) REFERENCES profilo(idProfilo)  ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY(fkProfilo2) REFERENCES profilo(idProfilo)  ON DELETE CASCADE ON UPDATE CASCADE,
+    PRIMARY KEY(idMessaggio)
 ) ENGINE = InnoDB;
 
 
