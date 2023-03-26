@@ -15,12 +15,23 @@ if (!isset($_SESSION['loggato']) || $_SESSION['loggato'] != true) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Inbox - Social Network</title>
+    <link rel="icon" href="../img/icone/favicon.png" type="image/png">
+    <title>Social-X</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <!-- Font Awesome CSS -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+    <style>
+        body {
+            background-color: #E6E6E6;
+        }
+        .custom-bg {
+            background-color: #FFFFFF;
+        }
+    </style>
 </head>
+
+
 <body>
     <?php include 'header.php'; ?>
 
@@ -29,7 +40,7 @@ if (!isset($_SESSION['loggato']) || $_SESSION['loggato'] != true) {
         <div class="row">
             <!-- Private Messages Section -->
             <div class="col-md-4">
-                <h4 class="mb-3">Private Messages</h4>
+                <h4 class="mb-3">Messaggi</h4>
                 <div class="list-group" id="private-messages-tab" role="tablist">
                     <a class="list-group-item list-group-item-action active" id="private-messages-tab" data-toggle="list" href="#private-messages" role="tab" aria-controls="private-messages">John Doe</a>
                     <a class="list-group-item list-group-item-action" id="private-messages-tab" data-toggle="list" href="#private-messages" role="tab" aria-controls="private-messages">Jane Smith</a>

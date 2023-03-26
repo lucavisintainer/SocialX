@@ -12,7 +12,7 @@ if (!isset($_SESSION['loggato']) || $_SESSION['loggato'] != true) {
 <html>
 
 <head>
-    <title>Amicizie</title>
+<title>Social-X</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
     <style>
@@ -46,7 +46,6 @@ if (!isset($_SESSION['loggato']) || $_SESSION['loggato'] != true) {
                 $query = "SELECT * FROM amicizia WHERE fkProfilo1 = '$idUtente' OR fkProfilo2 = '$idUtente';";
                 if ($result = $db_conn->query($query)) {
                     if ($result->num_rows > 0) {
-                        $row = $result->fetch_assoc();
                         while ($row = $result->fetch_assoc()) {
                             if ($row['fkProfilo1'] != $idUtente) {
                                 $arrayAmici[] = $row['fkProfilo1'];
@@ -56,13 +55,9 @@ if (!isset($_SESSION['loggato']) || $_SESSION['loggato'] != true) {
                             $stato[] = $row['stato'];
                             $data[] = $row['data'];
                         }
-                    } else {
-                        return 0;
                     }
-                } else {
-                    return 0;
                 }
-                if (amicizie($idUtente) == 0) {
+                if (listaAmici($idUtente) == 0) {
                     echo "<br>Non hai amicizie";
                 } else {
                     echo "          <thead>
@@ -86,8 +81,7 @@ if (!isset($_SESSION['loggato']) || $_SESSION['loggato'] != true) {
                         </td>
                      </tr>";
                      
-                    }
-                    
+                    }                  
                 }
                 ?>
             </tbody>

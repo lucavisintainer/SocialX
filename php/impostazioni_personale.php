@@ -95,7 +95,7 @@ function visibilitaAccount($visibilitaAccount)
 
 <head>
     <meta charset="UTF-8">
-    <title>Impostazioni Profilo</title>
+    <title>Social-X</title>
     <link rel="icon" href="../img/icone/favicon.png" type="image/png">
     <!-- Inclusione delle librerie Bootstrap e jQuery -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">

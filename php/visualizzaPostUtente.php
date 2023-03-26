@@ -17,7 +17,7 @@ if (!isset($_SESSION['loggato']) || $_SESSION['loggato'] != true) {
 <head>
     <meta charset="UTF-8">
     <link rel="icon" href="../img/icone/favicon.png" type="image/png">
-    <title>Post</title>
+    <title>Social-X</title>
     <!-- Inclusione delle librerie Bootstrap e jQuery -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

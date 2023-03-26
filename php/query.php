@@ -38,10 +38,23 @@ function trovaIDpost($idUsername)
 			}
 		} else {
 			return 0;
-		}
-		
+		}	
 	}
 
+	function listaAmici($idUtente) {
+		include 'connessione.php';
+		$query = "SELECT count(*) FROM amicizia WHERE fkProfilo1 = '$idUtente' AND (stato='AMICI' OR stato='IN ATTESA') OR fkProfilo2 = '$idUtente' AND (stato='AMICI' OR stato='IN ATTESA');";
+		if ($result = $db_conn->query($query)) {
+			if ($result->num_rows > 0) {
+				$row = $result->fetch_assoc();
+				return $row['count(*)'];
+			} else {
+				return 0;
+			}
+		} else {
+			return 0;
+		}	
+	}
 	
 
 	function post($idUtente){

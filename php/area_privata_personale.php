@@ -15,7 +15,7 @@ if (!isset($_SESSION['loggato']) || $_SESSION['loggato'] != true) {
 <html>
 
 <head>
-	<title>Profilo utente</title>
+<title>Social-X</title>
 	<link rel="stylesheet" type="text/css" href="../css/area_privata_personale.css">
 	<link rel="icon" href="../img/icone/favicon.png" type="image/png">
 

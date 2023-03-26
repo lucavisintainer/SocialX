@@ -15,7 +15,7 @@ if (!isset($_SESSION['loggato']) || $_SESSION['loggato'] != true) {
 	<link rel="icon" href="../img/icone/favicon.png" type="image/png">
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Carica post</title>
+	<title>Social-X</title>
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 	<!-- Font Awesome icons -->
