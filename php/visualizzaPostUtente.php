@@ -60,7 +60,9 @@ if (!isset($_SESSION['loggato']) || $_SESSION['loggato'] != true) {
     }
 
     ?>
+
     <div class="container">
+
         <div class="row">
             <div class="col-md-8">
                 <br><br>
@@ -176,7 +178,7 @@ if (!isset($_SESSION['loggato']) || $_SESSION['loggato'] != true) {
 
 
     </div>
-
+    <?php include 'footer.php'; ?>
 </body>
 
 </html>

@@ -93,17 +93,5 @@ CREATE TABLE notifiche (
 ) ENGINE = InnoDB;
 
 
-CREATE TABLE messaggi (
-    idMessaggio                    INT                 NOT NULL    AUTO_INCREMENT,
-    fkProfilo1                     INT                 NOT NULL,    /* INVIA IL MESSAGGIO*/
-    fkProfilo2                     INT                 NOT NULL,    /* RICEVE IL MESSAGGIO*/
-    testo                          TEXT                NOT NULL,
-    data                          DATETIME           NOT NULL,
-    view                          BOOLEAN           DEFAULT false, 
-    FOREIGN KEY(fkProfilo1) REFERENCES profilo(idProfilo)  ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY(fkProfilo2) REFERENCES profilo(idProfilo)  ON DELETE CASCADE ON UPDATE CASCADE,
-    PRIMARY KEY(idMessaggio)
-) ENGINE = InnoDB;
-
 
 

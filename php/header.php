@@ -23,33 +23,6 @@
         <a class="nav-link" href="area_privata_personale.php">Account</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="messaggi.php">
-          Messaggi
-          <?php
-          include 'connessione.php'; 
-          $num_messaggi;
-          //count tabelle messaggi
-          $idProfilo =  $_SESSION['idProfilo'];
-          $query2 = "SELECT COUNT(*) FROM messaggi WHERE fkProfilo2='$idProfilo' AND view='false'";
-          $result = $db_conn->query($query2);
-          if ($result->num_rows == 1) {
-            $row = $result->fetch_assoc();
-            $num_messaggi = $row['COUNT(*)'];
-          } else {
-            return false;         //problema query      
-          }
-          
-          // Stampa del pallino con il numero di messaggi
-          if ($num_messaggi > 0) {
-            echo '<span class="badge badge-danger">' . $num_messaggi . '</span>';
-          } else {
-            echo '<span class="badge badge-secondary">' . $num_messaggi . '</span>';
-          }
-          ?>
-        </a>
-        
-      </li>
-      <li class="nav-item">
         <a class="nav-link" href="notifiche.php">
           Notifiche
           <?php
