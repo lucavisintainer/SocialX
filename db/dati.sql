@@ -7,7 +7,7 @@ INSERT INTO profilo (username, password, email, dataIscrizione, ultimoAccesso, b
 ('mario01', 'passwordmario', 'mario01@mail.com', '2022-03-17 10:30:00', '2022-03-17 12:30:00', 'Sono un appassionato di tecnologia', 'A', 'Via Roma 1', '1234567890', 'Ingegnere informatico'),
 ('laura92', 'passwordlaura', 'laura92@mail.com', '2022-03-17 11:30:00', '2022-03-17 13:30:00', 'Appassionata di viaggi e cucina', 'T', 'Via Dante Alighieri 3', '0987654321', 'Cuoca'),
 ('giovanni88', 'passwordgiovanni', 'giovanni88@mail.com', '2022-03-17 12:30:00', '2022-03-17 14:30:00', 'Innamorato dello sport e della natura', 'T', 'Via Garibaldi 5', '3471234567', 'Insegnante di educazione fisica'),
-('francesca85', 'passwordfrancesca', 'francesca85@mail.com', '2022-03-17 13:30:00', '2022-03-17 15:30:00', 'Amante della musica e del cinema', 'AA', 'Via Mazzini 7', '3456789012', 'Musicista'),
+('francesca85', 'passwordfrancesca', 'francesca85@mail.com', '2022-03-17 13:30:00', '2022-03-17 15:30:00', 'Amante della musica e del cinema', 'A', 'Via Mazzini 7', '3456789012', 'Musicista'),
 ('marco79', 'passwordmarco', 'marco79@mail.com', '2022-03-17 14:30:00', '2022-03-17 16:30:00', 'Appassionato di sport e tecnologia', 'A', 'Via Verdi 9', '5678901234', 'Ingegnere meccanico'),
 ('andrea93', 'passwordandrea', 'andrea93@mail.com', '2022-03-18 15:30:00', '2022-03-18 16:30:00', 'Sono appassionato di fotografia e di tecnologia', 'T', 'Via dei Mille 10', '3456789123', 'Fotografo'),
 ('silvia88', 'passwordsilvia', 'silvia88@mail.com', '2022-03-19 14:30:00', '2022-03-19 15:30:00', 'Amante della lettura e della natura', 'T', 'Via Garibaldi 15', '3491234567', 'Libraia'),

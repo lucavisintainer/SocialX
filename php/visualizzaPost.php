@@ -191,7 +191,8 @@ if (!isset($_SESSION['loggato']) || $_SESSION['loggato'] != true) {
 
 
     </div>
-
+    <br><br><br><br><br>
+<?php include 'footer.php'; ?>
 </body>
 
 

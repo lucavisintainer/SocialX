@@ -22,7 +22,7 @@ CREATE TABLE profilo (
     password                    VARCHAR(255)         NOT NULL ,
     email                       VARCHAR(255)         NOT NULL ,
     dataIscrizione              DATETIME            NOT NULL,
-    ultimoAccesso               DATETIME            DEFAULT dataIscrizione,
+    ultimoAccesso               DATETIME,
     biografia                   VARCHAR(255), 
     visibilitaAccount           ENUM('T', 'A') DEFAULT 'T', /* Tutti - Amici */               
     indirizzo                   VARCHAR(100),         

@@ -8,7 +8,7 @@ if (!isset($_SESSION['loggato']) || $_SESSION['loggato'] != true) {
 include 'connessione.php';
 
 // Controlla se l'utente ha inviato un form di modifica
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['impostazioni'])){
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['impostazioni'])) {
     $username = $_SESSION['username'];
     $email = strtolower($_POST['email']);
     $biografia = $_POST['biografia'];
@@ -17,21 +17,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['impostazioni'])){
     $professione = $_POST['professione'];
     $visibilita = $_POST['visibilita'];
 
-    function verificaBiografia($biografia){
-    //verificare che biografia sia meno di 255
-    return strlen($biografia) <= 255;
+    function verificaBiografia($biografia)
+    {
+        //verificare che biografia sia meno di 255
+        return strlen($biografia) <= 255;
     }
 
-    function verificaIndirizzo($indirizzo){
+    function verificaIndirizzo($indirizzo)
+    {
         //verificare che indirizzo sia meno di 100
         return strlen($indirizzo) <= 100;
     }
-    function verificaTelefono($numeroTelefono){
+    function verificaTelefono($numeroTelefono)
+    {
         //verificare che sia un numero di telefono
         return preg_match("/^(\+?\d{1,3}\s?)?(\d{3,4}[\s.-]?)?\d{7,8}$/", $numeroTelefono);
     }
 
-    function verificaProfessione($professione){
+    function verificaProfessione($professione)
+    {
         //verificare che professione sia meno di 255
         return strlen($professione) <= 255;
     }
@@ -41,25 +45,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['impostazioni'])){
     $validTelefono = verificaTelefono($numeroTelefono);
     $validProfessione = verificaProfessione($professione);
 
-    
-    if (!$validBiografia) {  
-        global $error;
-        $error="<div class='alert alert-danger' role='alert'>Campo biografia troppo lungo (max 255 caratteri)</div>";
-    }else if(!$validIndirizzo){
-        global $error;
-        $error="<div class='alert alert-danger' role='alert'>Campo indirizzo troppo lungo (max 255 caratteri)</div>";
-    }else if(!$validTelefono && $numeroTelefono!=""){
-        global $error;
-        $error="<div class='alert alert-danger' role='alert'>Numero di telefono non valido</div>";
-    }else if(!$validProfessione){
-        global $error;
-        $error="<div class='alert alert-danger' role='alert'>Campo professione troppo lungo (max 255 caratteri)</div>";
-    }else{
-    // Esegui la query per aggiornare il profilo dell'utente
-    $query = "UPDATE profilo SET email = '$email', biografia = '$biografia', indirizzo = '$indirizzo', numeroTelefono = '$numeroTelefono', professione = '$professione', visibilitaAccount = '$visibilita' WHERE username = '$username'";
-    mysqli_query($db_conn, $query);
-    }
 
+    if (!$validBiografia) {
+        global $error;
+        $error = "<div class='alert alert-danger' role='alert'>Campo biografia troppo lungo (max 255 caratteri)</div>";
+    } else if (!$validIndirizzo) {
+        global $error;
+        $error = "<div class='alert alert-danger' role='alert'>Campo indirizzo troppo lungo (max 255 caratteri)</div>";
+    } else if (!$validTelefono && $numeroTelefono != "") {
+        global $error;
+        $error = "<div class='alert alert-danger' role='alert'>Numero di telefono non valido</div>";
+    } else if (!$validProfessione) {
+        global $error;
+        $error = "<div class='alert alert-danger' role='alert'>Campo professione troppo lungo (max 255 caratteri)</div>";
+    } else {
+        // Esegui la query per aggiornare il profilo dell'utente
+        $query = "UPDATE profilo SET email = '$email', biografia = '$biografia', indirizzo = '$indirizzo', numeroTelefono = '$numeroTelefono', professione = '$professione', visibilitaAccount = '$visibilita' WHERE username = '$username'";
+        mysqli_query($db_conn, $query);
+    }
 }
 
 
@@ -82,7 +85,7 @@ function visibilitaAccount($visibilitaAccount)
 {
     if ($visibilitaAccount == 'T') {
         return 'Tutti';
-    } else{
+    } else {
         return 'Amici';
     }
 }
@@ -91,7 +94,7 @@ function visibilitaAccount($visibilitaAccount)
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 
 <head>
     <meta charset="UTF-8">
@@ -117,8 +120,10 @@ function visibilitaAccount($visibilitaAccount)
         <h1 class="text-center mb-5">Impostazioni Profilo</h1>
         <?php
         global $error;
-        if($error!=""){echo $error;}
-		?>
+        if ($error != "") {
+            echo $error;
+        }
+        ?>
         <form method="POST">
 
             <div class="form-group">
@@ -178,53 +183,49 @@ function visibilitaAccount($visibilitaAccount)
                 </div>
             </div>
 
-                <!-- Modal -->
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Sei sicuro di voler elimanare il post?</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Indietro</button>
-                    <button type="button" class="btn btn-primary" id="deleteProfilo">Elimina</button>
-                    
 
+        </form>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Sei sicuro di voler eliminare il profilo?</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form method="POST" action="eliminaProfilo.php">
+                        <div class="modal-body">
+                            <label for="password">Inserisci la tua password:</label>
+                            <input type="password" id="password" name="password" class="form-control" required>
+                            <span id="error-message" class="text-danger"></span>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Indietro</button>
+                            <button type="submit" class="btn btn-primary" name="elimina-profilo">Elimina</button>
+                        </div>
+                    </form>
 
                 </div>
             </div>
         </div>
-    </div>
 
 
-
-        </form>
     </div><br><br>
     <?php include 'footer.php'; ?>
-    <script>
-    document.getElementById("deleteProfilo").addEventListener("click", function() {
-        eliminaProfilo(<?php echo $_SESSION['idProfilo']; ?>);
+<script>
+    $(document).ready(function() {
+        <?php if (isset($_GET['error'])) { ?>
+            $('#exampleModalCenter').modal('show');
+            $('#error-message').text('<?php echo $_GET['error']; ?>');
+        <?php } ?>
     });
-
-
-    function eliminaProfilo(idProfilo) {
-
-
-        // Crea una richiesta AJAX per eliminare il post
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "eliminaProfilo.php", true);
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhr.onreadystatechange = function() {
-            if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-                location.href = 'index.php';
-            }
-        }
-        xhr.send("idProfilo=" + idProfilo);
-    }
 </script>
+
+
+
+
 </body>
 
 </html>

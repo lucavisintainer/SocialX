@@ -33,6 +33,15 @@ if (!isset($_SESSION['loggato']) || $_SESSION['loggato'] != true) {
         body {
             background-color: #E6E6E6;
         }
+
+        .card-text {
+            word-wrap: break-word;
+        }
+
+        .custom-width {
+            max-width: 400px;
+            word-wrap: break-word;
+        }
     </style>
 </head>
 
@@ -67,33 +76,43 @@ if (!isset($_SESSION['loggato']) || $_SESSION['loggato'] != true) {
             <div class="col-md-8">
                 <br><br>
                 <div>
-                <p style="display: inline-block; margin-right: 10px;">
-    <b><a href="paginaUtente.php" <?php $_SESSION['utenteCercato'] = idProfiloToUsername(idProfiloAutorePost($idPost)); ?> ><?php echo idProfiloToUsername(idProfiloAutorePost($idPost));?></a></b>
-  </p>
-  <p style="display: inline-block;"><u><?php if(postSponsorizzato($idPost)){echo "Post sponsorizzato";}?></u></p>
-</div>
+                    <p style="display: inline-block; margin-right: 10px;">
+                        <b><a href="paginaUtente.php" <?php $_SESSION['utenteCercato'] = idProfiloToUsername(idProfiloAutorePost($idPost)); ?>><?php echo idProfiloToUsername(idProfiloAutorePost($idPost)); ?></a></b>
+                    </p>
+                    <p style="display: inline-block;"><u><?php if (postSponsorizzato($idPost)) {
+                                                                echo "Post sponsorizzato";
+                                                            } ?></u></p>
+                </div>
 
 
                 <img <?php echo convertToUrl($idPost); ?>" class="img-fluid" alt="Post">
                 <!-- Sezione del post -->
                 <div class="card my-3">
 
-                    <div class="card-body" style="display: flex; align-items: center;">
-                        <p class="card-text"><?php echo descrizionePost($idPost); ?></p>
-                        <form method="POST" action=like.php>
-                            <button type="submit" name="likeButton" style="border: none; background-color: white;">
-                                <img <?php if (like($idPost)) {
-                                            echo "src='../img/icone/like.png'";
-                                        } else {
-                                            echo "src='../img/icone/nolike.png'";
-                                        } ?> alt="like" style="width: 50px; height: auto;">
-                            </button>
-                            <input type="hidden" name="id_post" value="<?php echo $idPost; ?>">
-                        </form>
-                        <div class="col-sm-1 text-right">
-                            <span class="badge badge-pill badge-primary align-middle"><?php echo nLike($idPost); ?> Like</span>
+                    <div class="card-body d-flex align-items-center justify-content-between">
+                        <p class="card-text custom-width"><?php echo descrizionePost($idPost); ?></p>
+                        <div class="d-flex align-items-center">
+                            <form method="POST" action="like.php" class="mr-2">
+                                <button type="submit" name="likeButton" class="border-0 bg-transparent">
+                                    <img <?php if (like($idPost)) {
+                                                echo "src='../img/icone/like.png'";
+                                            } else {
+                                                echo "src='../img/icone/nolike.png'";
+                                            } ?> alt="like" style="width: 50px; height: auto;">
+                                </button>
+                                <input type="hidden" name="id_post" value="<?php echo $idPost; ?>">
+                            </form>
+                            <div class="col-sm-1 text-right mr-2">
+                                <span class="badge badge-pill badge-primary align-middle"><?php echo nLike($idPost); ?> Like</span>
+                            </div>
+                            <div class="ml-auto">
+                                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#exampleModalCenter">Segnala post</button>
+                            </div>
                         </div>
                     </div>
+
+
+
 
 
 
@@ -178,6 +197,45 @@ if (!isset($_SESSION['loggato']) || $_SESSION['loggato'] != true) {
 
 
     </div>
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Segnalazione post</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="segnalazione.php" method="POST">
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="motivo">Motivo della segnalazione:</label>
+                    <select class="form-control" id="motivo" name="motivo">
+                        <option value="spam">Spam</option>
+                        <option value="nudo">Nudo o atti sessuali</option> 
+                        <option value="truffa">Truffa o frode</option> 
+                        <option value="odio">Discorsi o simboli che incitano all'odio</option> 
+                        <option value="falso">Informazioni false</option>  
+                        <option value="bullismo">Bullismo o intimidazioni</option>
+                        <option value="violenza">Violenza o organizzazioni pericolose</option>
+                        <option value="contenuto inappropriato">Contenuto inappropriato</option>
+                        <option value="altro">Altro</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="messaggio">Spiegaci il motivo della segnalazione:</label>
+                    <textarea class="form-control" id="messaggio" name="messaggio" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
+                <button type="submit" class="btn btn-primary">Invia segnalazione</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
     <?php include 'footer.php'; ?>
 </body>
 

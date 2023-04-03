@@ -127,7 +127,8 @@ if (!isset($_SESSION['loggato']) || $_SESSION['loggato'] != true) {
 	</script>
 
 
-
+<br><br><br><br><br>
+<?php include 'footer.php'; ?>
 </body>
 
 </html>
