@@ -4,7 +4,7 @@
 <html>
 
 <head>
-<link rel="icon" href="../img/icone/favicon.png" type="image/png"> 
+    <link rel="icon" href="../img/icone/favicon.png" type="image/png">
     <meta charset="UTF-8">
     <title>Social-X</title>
     <link rel="stylesheet" type="text/css" href="../css/login.css">
@@ -27,13 +27,7 @@
                 <input for="confermaPassword" id="confermaPassword" name="confermaPassword" type="password" placeholder="Conferma password" required />
                 <input type="checkbox" onclick="showPassword()">Mostra password</input>
                 <label style="color: red;" id="errPassword"></label>
-                    <br>
-                 
-                
-                
-                 
-
-
+                <br>
                 <button type="submit" name="submitRegistrazione" value="Registrati">Registrati</button>
             </form>
         </div>
@@ -192,7 +186,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submitRegistrazione'])
                 };
             </script>
 
-<?php return false;
+            <?php return false;
         } else {
             return true;
         }
@@ -209,8 +203,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submitRegistrazione'])
             echo "Errore durante registrazione utente";
         }
     }
-
-
 }
 
 function modificaUltimoAccesso($date)
@@ -236,11 +228,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['accedi'])) {
                 $_SESSION['idProfilo'] = $row['idProfilo'];
                 $_SESSION['username'] = $row['username'];
                 $date = date("Y-m-d H:i:s");
-                modificaUltimoAccesso($date);        
-                    header("location: area_privata_personale.php");
-                    exit;
+                modificaUltimoAccesso($date);
+                header("location: area_privata_personale.php");
+                exit;
             } else {
-?>
+            ?>
                 <script>
                     const errPassword1 = document.getElementById('errLogin');
                     errPassword1.innerHTML = "Password errata";
@@ -259,6 +251,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['accedi'])) {
         }
     }
 }
+
 
 ob_end_flush();
 ?>

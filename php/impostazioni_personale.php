@@ -179,12 +179,11 @@ function visibilitaAccount($visibilitaAccount)
                     <input type="submit" value="Salva modifiche" name="impostazioni" class="btn btn-primary">
                 </div>
                 <div class="text-right">
-                    <button type='button' class='btn btn-primary btn-danger' data-toggle='modal' data-target='#exampleModalCenter'>Elimina profilo</button>
+                <button type='button' class='btn btn-primary btn-danger' data-toggle='modal' data-target='#exampleModalCenter'>Elimina profilo</button>
                 </div>
             </div>
-
-
         </form>
+
         <!-- Modal -->
         <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -211,7 +210,6 @@ function visibilitaAccount($visibilitaAccount)
             </div>
         </div>
 
-
     </div><br><br>
     <?php include 'footer.php'; ?>
 <script>
@@ -222,9 +220,6 @@ function visibilitaAccount($visibilitaAccount)
         <?php } ?>
     });
 </script>
-
-
-
 
 </body>
 

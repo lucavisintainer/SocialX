@@ -5,7 +5,7 @@
         <h1 class="h4 mb-4">Social-X</h1>
       </div>
       <div class="col-md-4">
-        <p class="mb-0"><i class="bi bi-envelope me-2"></i>luca.visintainer@buonarroti.tn.it</p>
+      <a href="mailto:luca.visintainer@buonarroti.tn.it"><i class="bi bi-envelope me-2"></i>luca.visintainer@buonarroti.tn.it</a>
       </div>
       <div class="col-md-4">
         <div class="d-flex">

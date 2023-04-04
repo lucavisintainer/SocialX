@@ -92,6 +92,15 @@ CREATE TABLE notifiche (
     PRIMARY KEY(idNotifica)
 ) ENGINE = InnoDB;
 
+CREATE TABLE passwordResetToken (
+    idToken                    INT                 NOT NULL    AUTO_INCREMENT,
+    fkProfilo                  INT                 NOT NULL,   
+    token                      VARCHAR(255)        NOT NULL,
+    dataCreazione              DATETIME           NOT NULL,
+    FOREIGN KEY(fkProfilo) REFERENCES profilo(idProfilo)  ON DELETE CASCADE ON UPDATE CASCADE,
+    PRIMARY KEY(idToken)  
+) ENGINE = InnoDB;
+
 
 
 
