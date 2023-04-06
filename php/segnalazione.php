@@ -87,3 +87,60 @@ if (!isset($_SESSION['loggato']) || $_SESSION['loggato'] != true) {
 
 </html>
 
+
+<?php
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $motivo = $_POST['motivo'];
+    $messaggio = $_POST['messaggio'];
+    $utente = $_POST['nome_utente'];
+    $segnalatore = $_POST['segnalatore'];
+
+    switch ($motivo) {
+        case "spam":
+            $motivo='Spam';
+            break;
+        case "nudo":
+            $motivo='Nudo o atti sessuali';
+            break;
+        case "truffa":
+            $motivo='Truffa o frode';
+            break;
+        case "odio":
+            $motivo='Discorsi o simboli che incitano all\'\odio';
+            break;
+        case "falso":
+            $motivo='Informazioni false';
+            break;
+        case "bullismo":
+            $motivo='Bullismo o intimidazioni';
+            break;
+        case "violenza":
+            $motivo='Violenza o organizzazioni pericolose';
+            break;
+        case "contenuto inappropriato":
+            $motivo='Contenuto inappropriato';
+            break;
+        case "altro":
+            $motivo='Altro';
+            break;
+    }
+    
+
+    $subject = 'Segnalazione utente';
+    $message = '<html><body>';
+    $message .= '<head><title>Segnalazione utente</title></head>';
+    $message .= '<h1>'.$segnalatore.' ha segnalato '.$utente.' per '.$motivo.'</h1><br><br>';
+    $message .= '<p>Segnalatore: '.$segnalatore.'</p><br>';
+    $message .= '<p>Utente segnalato: '.$utente.'</p><br>';
+    $message .= '<p>Motivo: '.$motivo.'</p><br>'; 
+    $message .= '<p>Informazioni aggiuntive: '.$messaggio.'</p><br>'; 
+    $message .= '</n></n></n></n>-------------------------------------</body></html>';
+    $headers = "MIME-Version: 1.0" . "\r\n";
+    $headers .= "Content-type:text/html; charset=UTF-8" . "\r\n";
+    $headers .= 'From: "Luca Visintainer" <visintainer5inc2022@altervista.org>' . "\r\n";
+    $res = mail('luca.visintainer@buonarroti.tn.it', $subject, $message, $headers);
+}
+
+
+?>

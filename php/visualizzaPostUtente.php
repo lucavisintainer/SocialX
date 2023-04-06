@@ -110,14 +110,6 @@ if (!isset($_SESSION['loggato']) || $_SESSION['loggato'] != true) {
                             </div>
                         </div>
                     </div>
-
-
-
-
-
-
-
-
                 </div>
                 <!-- Fine sezione del post -->
             </div>
@@ -209,7 +201,10 @@ if (!isset($_SESSION['loggato']) || $_SESSION['loggato'] != true) {
             <form action="segnalazione.php" method="POST">
             <div class="modal-body">
                 <div class="form-group">
-                    <label for="motivo">Motivo della segnalazione:</label>
+                <input type="hidden" id="nome_utente" name="nome_utente" value="<?php echo idProfiloToUsername(idProfiloAutorePost($idPost));?>">
+                <input type="hidden" id="segnalatore" name="segnalatore" value="<?php echo $_SESSION['username'];?>">
+                <label><b>Utente: </b><?php echo idProfiloToUsername(idProfiloAutorePost($idPost))?></label><br>
+                    <label for="motivo"><b>Motivo della segnalazione:</b></label>
                     <select class="form-control" id="motivo" name="motivo">
                         <option value="spam">Spam</option>
                         <option value="nudo">Nudo o atti sessuali</option> 
@@ -223,7 +218,7 @@ if (!isset($_SESSION['loggato']) || $_SESSION['loggato'] != true) {
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="messaggio">Spiegaci il motivo della segnalazione:</label>
+                    <label for="messaggio"><b>Dicci di più:</b></label>
                     <textarea class="form-control" id="messaggio" name="messaggio" rows="3"></textarea>
                 </div>
             </div>
