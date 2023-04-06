@@ -56,6 +56,14 @@ if (isset($_GET['id'])) {
     $idProfilo = idCercato($_SESSION['utenteCercato']);
 }
 
+if (isset($_GET['nomeUtente'])) {
+    $nomeUtente = $_GET['nomeUtente'];
+    global $idProfilo;
+    $idProfilo=idCercato($nomeUtente);
+    $_SESSION['utenteCercato']=$nomeUtente;
+}
+
+
 
 function esiste()
 {

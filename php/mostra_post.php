@@ -1,6 +1,7 @@
 <?php
 include 'connessione.php';
 include 'query.php';
+
 ob_start();
 session_start();
 if (!isset($_SESSION['loggato']) || $_SESSION['loggato'] != true) {

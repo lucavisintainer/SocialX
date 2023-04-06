@@ -6,6 +6,35 @@
     font-size: 1.4rem;
     /* aumenta la dimensione del font dei link */
   }
+
+
+  #username-list {
+  position: absolute;
+  top: 55px;
+  left: 0;
+  width: 100%;
+  max-height: 200px;
+  overflow-y: auto;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
+#username-list ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+#username-list li {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+#username-list li:hover {
+  background-color: #ddd;
+}
+
 </style>
 
 
@@ -77,6 +106,7 @@
       <form method="POST" class="form-inline my-2 my-lg-0">
         <input class="form-control rounded mr-sm-2" type="text" required placeholder="Cerca utente..." aria-label="Search" id="search-box" name="search">
         <button class="btn btn-outline-success my-2 my-sm-0 my-white-btn rounded" type="submit" name="submit" style="margin-left: 10px;">Cerca</button>
+        <div id="username-list"></div>
         <div>
           <span>. .</span>
           <span>. .</span>
@@ -117,3 +147,33 @@ if (isset($_POST["submit"])) {
   }
 }
 ?>
+
+<script>
+    let debounceTimer;
+    let inputElement = document.getElementById('search-box');
+
+    inputElement.addEventListener('input', function() {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(function() {
+            let inputValue = inputElement.value;
+            // invia la richiesta ajax qui con il valore dell'input
+            var usernameInput = document.querySelector('#search-box');
+            var letter = usernameInput.value;
+            var url = 'cerca-username.php?letter=' + letter;
+
+            // Effettua la chiamata AJAX alla pagina PHP
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    // Aggiorna la lista degli username con la risposta ricevuta
+                    var usernameList = document.querySelector('#username-list');
+                    usernameList.innerHTML = xhr.responseText;
+                }
+            };
+            xhr.open('GET', url, true);
+            xhr.send();
+
+
+        }, 0); // tempo in millisecondi per il debounce
+    });
+</script>
