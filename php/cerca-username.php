@@ -7,11 +7,11 @@ if (!isset($_SESSION['loggato']) || $_SESSION['loggato'] != true) {
     header("location: enter.php");
     exit;
 }
-
+$idProfilo =  $_SESSION['idProfilo'];
 $out = "<ul>";
 $letter = $_GET['letter'];
 $letter = mysqli_real_escape_string($db_conn, $letter);
-$query = "SELECT * FROM profilo WHERE username LIKE '$letter%' ORDER BY username ASC";
+$query = "SELECT * FROM profilo WHERE username LIKE '$letter%' AND idProfilo != '$idProfilo' ORDER BY username ASC";
 $arrayRisultati = array();
 $idUsername = array();
 if ($result = $db_conn->query($query)) {
