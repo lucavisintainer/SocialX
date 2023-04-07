@@ -15,6 +15,17 @@ INSERT INTO profilo (username, password, email, dataIscrizione, ultimoAccesso, b
 ('simone90', 'passwordsimone', 'simone90@mail.com', '2022-03-21 12:30:00', '2022-03-21 13:30:00', 'Innamorato del mare e degli animali', 'T', 'Via della Repubblica 25', '3478901234', 'Biologo marino'),
 ('valentina91', 'passwordvalentina', 'valentina91@mail.com', '2022-03-22 11:30:00', '2022-03-22 12:30:00', 'Sono appassionata di cucina e di viaggi', 'T', 'Via Roma 30', '3456789012', 'Cuoca'),
 ('francesco87', 'passwordfrancesco', 'francesco87@mail.com', '2022-03-23 10:30:00', '2022-03-23 11:30:00', 'Appassionato di arte e cultura', 'A', 'Via dei Condotti 35', '3490123456', 'Storico');
+('mario123', 'mario123pass', 'mario123@gmail.com', '2022-01-01 12:00:00', '2022-02-01 12:00:00', 'Sono Mario e mi piace la pizza', 'T', 'Via Roma 1, Milano', '3331234567', 'Pizzaiolo'),
+('lucia89', 'lucia89pass', 'lucia89@hotmail.com', '2022-01-02 12:00:00', '2022-02-02 12:00:00', 'Ciao, sono Lucia e adoro viaggiare', 'T', 'Via Verdi 3, Torino', '3399876543', 'Fotografa'),
+('giorgio7', 'giorgio7pass', 'giorgio7@yahoo.com', '2022-01-03 12:00:00', '2022-02-03 12:00:00', 'Mi chiamo Giorgio e sono un appassionato di tecnologia', 'T', 'Corso Italia 10, Firenze', '3472345678', 'Ingegnere'),
+('francesca00', 'francesca00pass', 'francesca00@gmail.com', '2022-01-04 12:00:00', '2022-02-04 12:00:00', 'Ciao, sono Francesca e amo leggere', 'T', 'Via dei Mille 5, Napoli', '3330987654', 'Libraia'),
+('marco81', 'marco81pass', 'marco81@hotmail.com', '2022-01-05 12:00:00', '2022-02-05 12:00:00', 'Sono Marco e mi piace il calcio', 'T', 'Via Roma 1, Roma', '3451234567', 'Calciatore'),
+('elena99', 'elena99pass', 'elena99@yahoo.com', '2022-01-06 12:00:00', '2022-02-06 12:00:00', 'Ciao, sono Elena e mi piace fare trekking', 'T', 'Piazza del Popolo 2, Bologna', '3339876543', 'Guida Escursionistica'),
+('simone32', 'simone32pass', 'simone32@gmail.com', '2022-01-07 12:00:00', '2022-02-07 12:00:00', 'Sono Simone e mi piace la fotografia', 'T', 'Via Garibaldi 20, Genova', '3462345678', 'Fotografo'),
+('chiara76', 'chiara76pass', 'chiara76@hotmail.com', '2022-01-08 12:00:00', '2022-02-08 12:00:00', 'Ciao, sono Chiara e adoro dipingere', 'T', 'Via dei Cerchi 15, Roma', '3330987654', 'Artista');
+
+
+
 
 /* Post */
 INSERT INTO post (idPost,data, descrizione, fkProfilo, tipoPost, prezzo) VALUES
@@ -48,7 +59,26 @@ INSERT INTO post (idPost,data, descrizione, fkProfilo, tipoPost, prezzo) VALUES
 (28,'2022-03-17 14:45:00', 'Foto della mia ultima creazione musicale', 9, 'N', NULL),
 (29,'2022-03-17 15:45:00', 'Articolo sulle ultime tendenze nel mondo dello sport', 10, 'N', NULL),
 (30,'2022-03-17 16:45:00', 'Nuova invenzione', 11, 'N', NULL),
-(31,'2022-03-17 17:45:00', 'Ricetta per una torta a forma di cuore', 6, 'N', NULL);
+(31,'2022-03-17 17:45:00', 'Ricetta per una torta a forma di cuore', 6, 'N', NULL)
+('2022-01-01 12:30:00', 'Ho appena fatto la mia prima pizza artigianale!', 1, 'N', 0),
+('2022-01-02 14:20:00', 'Foto scattata durante il mio ultimo viaggio in Asia', 2, 'N', 0),
+('2022-01-03 15:40:00', 'Ho appena scoperto questa nuova tecnologia e sono entusiasta!', 3, 'N', 0),
+('2022-01-04 09:10:00', 'Ho letto il nuovo libro di Murakami e mi è piaciuto molto', 4, 'N', 0),
+('2022-01-05 18:00:00', 'La mia squadra ha vinto la partita di ieri sera!', 5, 'N', 0),
+('2022-01-06 11:45:00', 'Foto scattata durante la mia ultima escursione in montagna', 6, 'N', 0),
+('2022-01-07 16:30:00', 'Questa è la mia ultima foto in bianco e nero', 7, 'N', 0),
+('2022-01-08 13:20:00', 'Ho appena finito di dipingere questo quadro', 8, 'N', 0),
+('2022-01-09 10:00:00', 'Questa è la mia ultima avventura in canoa', 1, 'N', 0),
+('2022-01-10 14:00:00', 'Nuovo modello di smartphone appena uscito sul mercato', 3, 'P', 799.99),
+('2022-01-11 12:15:00', 'Ho appena pubblicato il mio nuovo libro di fotografia', 2, 'P', 49.99),
+('2022-01-12 09:30:00', 'Nuova collezione di quadri in mostra nella mia galleria', 8, 'P', 999.99),
+('2022-01-13 16:40:00', 'Nuovo prodotto cosmetico in vendita nel mio negozio', 4, 'P', 19.99),
+('2022-01-14 11:20:00', 'Ho appena pubblicato il mio nuovo romanzo', 4, 'P', 29.99),
+('2022-01-15 15:00:00', 'Questa è la mia ultima creazione artistica', 8, 'N', 0),
+('2022-01-16 12:00:00', 'Foto scattata durante il mio ultimo viaggio in Sud America', 6, 'N', 0),
+('2022-01-17 14:30:00', 'La mia nuova racchetta da tennis', 5, 'P', 129.99),
+('2022-01-18 09:45:00', 'Foto scattata durante il mio ultimo safari in Africa', 2, 'N', 0),
+('2022-01-19 17:10:00', 'Questa è la mia ultima creazione culinaria', 1, 'N', 0);
 
 /* Commenti */
 INSERT INTO commento (data, testo, fkProfilo, fkPost, stato) VALUES
@@ -69,7 +99,23 @@ INSERT INTO commento (data, testo, fkProfilo, fkPost, stato) VALUES
 ('2022-02-01 10:15:00', 'Meraviglioso!', 2, 3, 'PUBBLICATO'),
 ('2022-02-02 15:00:00', 'Che posto incantevole!', 3, 3, 'PUBBLICATO'),
 ('2022-02-03 08:30:00', 'Fantastico, da provare assolutamente!', 4, 3, 'PUBBLICATO'),
-('2022-02-05 14:50:00', 'Grazie per averci fatto scoprire questo posto!', 6, 3, 'PUBBLICATO');
+('2022-02-05 14:50:00', 'Grazie per averci fatto scoprire questo posto!', 6, 3, 'PUBBLICATO')
+('2022-01-01 12:00:00', 'Bellissimo post, mi piace molto la tua passione per la pizza!', 1, 1, 'PUBBLICATO'),
+('2022-01-02 12:00:00', 'Wow, le tue foto di viaggio sono fantastiche!', 2, 2, 'PUBBLICATO'),
+('2022-01-03 12:00:00', 'Interessante quello che dici sulla tecnologia, mi piacerebbe approfondire l\'argomento', 3, 3, 'PUBBLICATO'),
+('2022-01-04 12:00:00', 'Adoro la lettura anch\'io, hai qualche libro da consigliare?', 4, 4, 'PUBBLICATO'),
+('2022-01-05 12:00:00', 'Forza Roma! Speriamo di vederti presto in campo!', 5, 5, 'PUBBLICATO'),
+('2022-01-06 12:00:00', 'Mi piace molto il trekking anche a me! Dove hai fatto l\'ultima escursione?', 6, 6, 'PUBBLICATO'),
+('2022-01-07 12:00:00', 'Hai uno stile fotografico molto bello, mi piacerebbe vedere altri tuoi scatti', 7, 7, 'PUBBLICATO'),
+('2022-01-08 12:00:00', 'Adoro l\'arte, complimenti per i tuoi quadri!', 8, 8, 'PUBBLICATO'),
+('2022-01-09 12:00:00', 'Mi piacerebbe sapere di più sulla tecnica che hai usato per realizzare questo scatto', 1, 7, 'PUBBLICATO'),
+('2022-01-10 12:00:00', 'Anche io ho fatto un viaggio in quel posto, è stupendo!', 2, 6, 'PUBBLICATO'),
+('2022-01-11 12:00:00', 'Complimenti per la passione per la pizza, hai mai pensato di aprire una pizzeria?', 3, 1, 'PUBBLICATO'),
+('2022-01-12 12:00:00', 'Mi piace il tuo stile fotografico, hai qualche consiglio per migliorare?', 4, 7, 'PUBBLICATO'),
+('2022-01-13 12:00:00', 'Anche io ho fatto un\'escursione in quella zona, è stata un\'esperienza indimenticabile', 5, 6, 'PUBBLICATO'),
+('2022-01-14 12:00:00', 'Hai un grande talento nell\'arte, complimenti!', 6, 8, 'PUBBLICATO'),
+('2022-01-15 12:00:00', 'Mi piace molto il tuo modo di scrivere, continuerò a seguire i tuoi post!', 7, 4, 'PUBBLICATO');
+
 
 
 /* Mi piace */
@@ -83,7 +129,28 @@ INSERT INTO miPiace (data, fkProfilo, fkPost) VALUES ('2022-12-17 08:45:00', 1, 
 INSERT INTO miPiace (data, fkProfilo, fkPost) VALUES ('2022-11-05 17:30:00', 3, 4);
 INSERT INTO miPiace (data, fkProfilo, fkPost) VALUES ('2023-01-10 22:00:00', 2, 6);
 INSERT INTO miPiace (data, fkProfilo, fkPost) VALUES ('2023-03-12 13:15:00', 1, 8);
-INSERT INTO miPiace (data, fkProfilo, fkPost) VALUES ('2023-02-02 09:00:00', 4, 10);
+INSERT INTO miPiace (data, fkProfilo, fkPost) VALUES ('2023-02-02 09:00:00', 4, 10),
+('2022-01-02 15:30:00', 2, 1),
+('2022-01-05 11:00:00', 1, 3),
+('2022-01-08 16:45:00', 3, 2),
+('2022-01-10 13:20:00', 4, 5),
+('2022-01-12 09:15:00', 5, 4),
+('2022-01-15 14:30:00', 6, 1),
+('2022-01-18 17:00:00', 7, 2),
+('2022-01-20 10:30:00', 8, 3),
+('2022-01-23 12:00:00', 1, 4),
+('2022-01-25 16:45:00', 3, 5),
+('2022-01-28 11:00:00', 2, 1),
+('2022-02-01 09:15:00', 5, 2),
+('2022-02-04 14:30:00', 6, 3),
+('2022-02-06 17:00:00', 7, 4),
+('2022-02-09 10:30:00', 8, 5),
+('2022-02-12 12:00:00', 1, 1),
+('2022-02-15 16:45:00', 3, 2),
+('2022-02-18 11:00:00', 2, 3),
+('2022-02-20 09:15:00', 5, 4),
+('2022-02-23 14:30:00', 6, 5);
+
 
 
 /* Amicizia */
@@ -98,3 +165,17 @@ INSERT INTO amicizia (fkProfilo1, fkProfilo2, stato, data) VALUES (3, 5, 'IN ATT
 INSERT INTO amicizia (fkProfilo1, fkProfilo2, stato, data) VALUES (1, 5, 'IN ATTESA', '2022-10-25 08:00:00');
 INSERT INTO amicizia (fkProfilo1, fkProfilo2, stato, data) VALUES (4, 5, 'AMICI', '2022-11-30 16:20:00');
 INSERT INTO amicizia (fkProfilo1, fkProfilo2, stato, data) VALUES (2, 3, 'AMICI', '2022-09-22 21:15:00');
+INSERT INTO amicizia (fkProfilo1, fkProfilo2, stato, data) VALUES (1, 2, 'AMICI', '2022-01-15 18:00:00');
+INSERT INTO amicizia (fkProfilo1, fkProfilo2, stato, data) VALUES (3, 5, 'IN ATTESA', '2022-03-10 12:30:00');
+INSERT INTO amicizia (fkProfilo1, fkProfilo2, stato, data) VALUES (2, 4, 'AMICI', '2022-05-20 09:15:00');
+INSERT INTO amicizia (fkProfilo1, fkProfilo2, stato, data) VALUES (6, 7, 'AMICI', '2022-02-08 14:45:00');
+INSERT INTO amicizia (fkProfilo1, fkProfilo2, stato, data) VALUES (8, 10, 'IN ATTESA', '2022-06-03 17:20:00');
+INSERT INTO amicizia (fkProfilo1, fkProfilo2, stato, data) VALUES (9, 11, 'AMICI', '2022-04-25 11:10:00');
+INSERT INTO amicizia (fkProfilo1, fkProfilo2, stato, data) VALUES (5, 12, 'IN ATTESA', '2022-07-18 19:05:00');
+INSERT INTO amicizia (fkProfilo1, fkProfilo2, stato, data) VALUES (13, 14, 'AMICI', '2022-09-30 10:50:00');
+INSERT INTO amicizia (fkProfilo1, fkProfilo2, stato, data) VALUES (15, 16, 'IN ATTESA', '2022-08-12 15:30:00');
+INSERT INTO amicizia (fkProfilo1, fkProfilo2, stato, data) VALUES (17, 18, 'AMICI', '2022-11-05 21:00:00');
+INSERT INTO amicizia (fkProfilo1, fkProfilo2, stato, data) VALUES (21, 22, 'AMICI', '2022-10-22 16:25:00');
+INSERT INTO amicizia (fkProfilo1, fkProfilo2, stato, data) VALUES (23, 24, 'IN ATTESA', '2022-09-15 11:55:00');
+INSERT INTO amicizia (fkProfilo1, fkProfilo2, stato, data) VALUES (25, 26, 'AMICI', '2022-11-30 12:40:00');
+INSERT INTO amicizia (fkProfilo1, fkProfilo2, stato, data) VALUES (27, 28, 'IN ATTESA', '2022-06-27 09:30:00');
