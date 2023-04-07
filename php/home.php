@@ -41,6 +41,7 @@ if (!isset($_SESSION['loggato']) || $_SESSION['loggato'] != true) {
 <body>  
     <?php
     include 'header.php';
+
     postCasuali();  //prendo tutti i post
     stampa10Post(); //ne stampo 10 casuali
     ?> <div id="post-container"> </div> <?php

@@ -2,7 +2,8 @@
   $out="<ul>";
   include 'connessione.php';
   $letter = $_GET['letter'];
-  $query="SELECT * FROM profilo WHERE username LIKE '$letter%';";
+  $letter = mysqli_real_escape_string($db_conn, $letter);
+  $query = "SELECT * FROM profilo WHERE username LIKE '$letter%' ORDER BY username ASC";
   $arrayRisultati = array();
   $idUsername = array();
   if ($result = $db_conn->query($query)) {
@@ -23,4 +24,5 @@
   } else {
     echo "Errore";
   }
+
 ?>

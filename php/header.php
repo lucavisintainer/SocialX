@@ -35,6 +35,11 @@
   background-color: #ddd;
 }
 
+#username-list {
+    position: absolute;
+    z-index: 9999;
+  }
+
 </style>
 
 
@@ -159,6 +164,7 @@ if (isset($_POST["submit"])) {
             // invia la richiesta ajax qui con il valore dell'input
             var usernameInput = document.querySelector('#search-box');
             var letter = usernameInput.value;
+            
             var url = 'cerca-username.php?letter=' + letter;
 
             // Effettua la chiamata AJAX alla pagina PHP
@@ -173,7 +179,8 @@ if (isset($_POST["submit"])) {
             xhr.open('GET', url, true);
             xhr.send();
 
-
         }, 0); // tempo in millisecondi per il debounce
     });
 </script>
+
+
