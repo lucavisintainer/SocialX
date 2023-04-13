@@ -9,6 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Social-X</title>
     <link rel="icon" href="../img/icone/favicon.png" type="image/png">
+    
     <!-- Inclusione dei file CSS di Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
